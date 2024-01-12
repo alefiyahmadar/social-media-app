@@ -4,12 +4,20 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 
+import {BrowserRouter as Router} from "react-router-dom"
+import {ContextProvider} from "./Contexts/contextProvider"
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <ContextProvider >
+      <App />
+      </ContextProvider>
+   
+    </Router>
+   
   </React.StrictMode>,
   document.getElementById("root")
 );

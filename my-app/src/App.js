@@ -1,41 +1,37 @@
 import "./App.css";
-import logo from "./logo.png";
+import {Routes , Route , NavLink} from "react-router-dom"
+import { HomePage } from "./Pages/HomePage";
+import { ExplorePage } from "./Pages/ExplorePage";
+import { BookMark } from "./Pages/BookMark";
+import { useContext } from "react";
+import { MediaContext} from "./Contexts/contextProvider"
+
 
 function App() {
+
+  
   return (
+
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
-      </header>
+
+      <nav className="nav">
+        <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>Home</span></NavLink>
+        <NavLink to="/explore">Explore</NavLink>
+        <NavLink to="/bookmark">BookMark</NavLink>
+        
+
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<HomePage/>}></Route>
+        <Route path="/Bookmark" element={<BookMark/>}></Route>
+        <Route path="/explore" element={<ExplorePage/>} ></Route>
+      </Routes>
+      
+       
+       
+         
     </div>
   );
 }
