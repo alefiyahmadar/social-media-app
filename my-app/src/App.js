@@ -17,8 +17,8 @@ function App() {
 
       <nav className="nav">
         <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>Home</span></NavLink>
-        <NavLink to="/explore">Explore</NavLink>
-        <NavLink to="/bookmark">BookMark</NavLink>
+        <NavLink to="/explore"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/compass.png" alt="compass"/>Explore</span></NavLink>
+        <NavLink to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>Bookmark</span></NavLink>
         
 
       </nav>

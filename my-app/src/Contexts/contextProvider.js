@@ -5,13 +5,15 @@ export const MediaContext = createContext()
 export const ContextProvider = ({children})=>{
 
     const [DataPost , setPostData] = useState([])
+    const [SinglePost , setSinglePost] = useState([])
+    const [showSinglePost , setShowSinglePost] = useState(false)
 
 
 const FetchData = async()=>{
 
     const getData = (await fetch("/api/posts"))
     const PostData =   await getData.json()
-    console.log(PostData.posts)
+    
     setPostData(PostData.posts)
 
 
@@ -20,9 +22,20 @@ const FetchData = async()=>{
 useEffect(()=>{
     FetchData()
 },[])
+
+const GetSinglePost =(id)=>{
+
+
+const findPost = DataPost.find((e)=> e._id === id)
+
+setSinglePost([findPost])
+setShowSinglePost(true)
+
+
+}
    
 
-    return(<MediaContext.Provider value={{ DataPost , setPostData}}>
+    return(<MediaContext.Provider value={{ DataPost , setPostData , GetSinglePost , SinglePost , setSinglePost , showSinglePost}}>
 
         {children}
 

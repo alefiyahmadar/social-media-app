@@ -2,6 +2,6 @@ export const HomePage = ()=>{
 
 
     return(<div>
-        <p>HomePage</p>
+        <p style={{margin:"0"}}>HomePage</p>
     </div>)
 }

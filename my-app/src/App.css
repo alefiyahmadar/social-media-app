@@ -25,6 +25,7 @@ width: 250px;
 height: 100vh;
 position: fixed;
 border-right: 1px black solid;
+font-size: 20px;
 
 
  }
@@ -33,9 +34,134 @@ border-right: 1px black solid;
   flex-direction: column;
   padding: 1rem;
   text-align: left;
+  padding-left: 2rem;
   text-decoration: none;
-  padding-bottom:1rem ;
+  color: black;
+  
+
 
 
  }
+ .nav img{
+
+  padding: 0rem;
+  margin: 0rem;
+  padding-right: 1rem;
+ }
+ .explore-container{
+
+  width: 50%;
+  margin: auto;
+  padding-left: 10%;
+  padding-top: 2rem;
+
+ }
+ .PostCard-container{
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  position: relative;
+  background-color: white;
+  
+ }
+ 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Adjust the alpha (last value) for darkness */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Add a smooth transition effect */
+}
+.PostCard-container:hover .overlay {
+  opacity: 1;
+}
+ .PostCard-container span{
+
+  display: flex;
+  justify-content: left;
+
+ }
+ /* Define styles for the container div */
+.container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  overflow: hidden;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect for background color */
+}
+
+/* Define styles for the image or content inside the container */
+.content {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* If using an image, this ensures it covers the entire container */
+}
+
+/* Background color and content on hover */
+.container:hover {
+  background-color: black;
+}
+
+.PostCard-container:hover .image-overlay {
+  opacity: 10;
+}
+
+/* Define styles for the overlay that appears on hover */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Adjust the alpha (last value) for darkness */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Add a smooth transition effect */
+}
+
+
+/* Two images overlay */
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Add a smooth transition effect */
+  display: flex;
+  
+  
+}
+
+/* Adjust the size and position of your overlay images */
+.image1 {
+  width: 50px;
+  height: 50px;
+   margin: 0 30px;
+   color: white;
+
+  
+  /* Add your image source */
+
+}
+
+.image2 {
+  width: 50px;
+  height: 50px;
+  margin: 0 30px;
+  color: white;
+  /* Add your image source */
+
+}
+
+
+ 
+ 
+
+
+
+
 }

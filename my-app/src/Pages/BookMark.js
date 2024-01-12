@@ -2,6 +2,6 @@ export const BookMark =()=>{
 
 
     return(<div>
-        <p>BookMark</p>
+        <p style={{margin:"0"}}>BookMark</p>
     </div>)
 }
