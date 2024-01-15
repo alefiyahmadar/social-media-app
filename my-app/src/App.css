@@ -14,12 +14,13 @@
   .App{
 
   width: 100%;
+ 
   }
  .nav {
 
   
   margin: 0;
-padding: 0;
+padding: 1rem;
 float: left;
 width: 250px;
 height: 100vh;
@@ -37,7 +38,6 @@ font-size: 20px;
   padding-left: 2rem;
   text-decoration: none;
   color: black;
-  
 
 
 
@@ -52,16 +52,17 @@ font-size: 20px;
 
   width: 50%;
   margin: auto;
-  padding-left: 10%;
+  
   padding-top: 2rem;
+
 
  }
  .PostCard-container{
-  width: 100%;
+  width: 90%;
   text-align: left;
   padding: 1rem;
   position: relative;
-  background-color: white;
+  
   
  }
  
@@ -156,12 +157,575 @@ font-size: 20px;
   /* Add your image source */
 
 }
+.image{
+
+  width: 100%;
+}
+.PopUpSinglePost{
+
+  
+position: fixed;
+display: flex;
+
+width: 70%;
+  top: 30;
+  left: 0;
+margin: auto;
+  height: 80vh;
+  z-index: 999;
+  margin-left: 18rem;
+  
+  background-color: white;
+  margin-top: 2rem;
+  
+  
+}
+.popUpContainer{
+
+  display: flex;
+  
+}
+.singlePostImg{
+
+  width: 30rem;
+  display: flex;
+  height: 80vh;
+  
+}
+
+.singlePostInfo{
+padding: 0.5rem;
+display: flex;
 
 
- 
- 
+
+  
+}
+.singlePostInfo h2{
+  position: absolute;
+  margin-left: 3rem;
+}
+.singlePostSpan{
+  position: absolute;
+  
+}
 
 
+.circle-image {
+  width: 50px; /* Set your desired width */
+  height: 50px; /* Set your desired height */
+  border-radius: 50%;
+  overflow: hidden; 
+  
+}
+
+/* Optional: Add a border or box-shadow for styling */
+.circle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the entire circle */
+  border: 2px solid #fff; /* Optional: Add a border */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Optional: Add a box shadow */
+}
+.singlePostInfo span{
+  
+  display: flex;
+  
+
+}
+
+.singlePostInfo h2{
+font-size: 16px;
+padding-left: 1rem;
+
+  
+}
+
+.hr{
+
+  border-top: 2px solid black;
+}
+.scrollable-div{
+
+
+  height: 250px; /* Set the specific height for your div */
+  overflow-x: auto; /* Hide the vertical scrollbar */
+
+  width: 29rem;
+margin-top: 4rem;
+padding-top: 0.5rem;
+border-top: 0.1px solid wheat;
+z-index: 0;
+
+
+  
+  
+
+}
+.scrollable-div span{
+
+  padding: 0.5rem;
+}
+.scrollable-div span h3{
+
+  font-size: 14px;
+  margin-left: 1rem;
+}
+.para{
+
+margin-left: 1rem;
+text-align: left;
+width: 100%;
+  height: 100%;
+  
+  
+
+}
+.text{
+  display: flex;
+  
+}
+.content-list{
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  
+  height: 100%; 
 
 
 }
+.content-list li{
+
+  display: flex;
+  
+  flex-direction: column;
+}
+.content-list h2{
+
+  
+  display: flex;
+  margin-inline: 0%;
+  margin: 0%;
+  
+  margin-block-end: 0%;
+  margin-block-start: 0%;
+}
+
+.content-list p{
+
+  
+  display: flex;
+  margin-inline: 0%;
+  margin: 0%;
+  padding-left: 4rem;
+  margin-bottom: 1rem;
+}
+.commentBar{
+
+  
+  display: flex;
+width: 33%;
+top: 60%;
+height: 25vh;
+border-top: 0.1px wheat solid;
+
+ position: fixed; 
+ background-color: white;
+ 
+}
+.commentImgs{
+  padding: 1rem;
+}
+.commentImgs img{
+
+  padding-right: 1rem;
+}
+.bookmark{
+  
+  
+
+  
+  margin-left: 15rem;
+  
+}
+
+.addComment{
+position: absolute;
+display: flex;
+
+width: 100%;
+top: 50%;
+border-top: 0.1px solid wheat;
+}
+.addComment input{
+
+  width: 100%;
+  border: none;
+
+  padding-top: 1rem;
+ 
+}
+.cross{
+
+  
+  
+  position: fixed;
+  right: 0;
+  padding-right: 2rem;
+}
+.homePgCmtBar{
+
+  
+}
+.bookmarkHome{
+position: absolute;
+  
+  right: 5%;
+
+
+}
+.pHome{
+
+  padding-right: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0%;
+}
+.homeParaContainer{
+
+  max-height: 2.5em;
+  width: 90%;
+  overflow: hidden;
+  position: relative;
+  
+}
+.readMoreBtn{
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  padding-top: 0.5rem;
+  
+  
+  
+  
+
+  
+  background-color: #ffffff;
+  border: none;
+  
+  cursor: pointer;
+  color:gray;
+  margin-top: 0%;
+  
+
+
+}
+.cmtP{
+
+  
+  margin-top: 0%;
+  margin-inline: 0%;
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 1%;
+}
+
+.inputGrp{
+
+  display: flex;
+  align-items: center;
+}
+.cmtBarHome{
+
+  width: 100%;
+padding-bottom: 0.5rem;
+border: none;
+border-bottom: 0.5px solid wheat ;
+outline: none;
+
+  
+}
+.PostCmtBtn{
+
+  background-color: white;
+  border: none;
+  color: blue;
+  border-bottom:  0.5px solid wheat ;
+  padding-bottom: 0.5rem;
+}
+.suggestBox{
+
+  
+  
+  position: fixed;
+right: 0%;
+margin-right: 2rem;
+width: 20%;
+height: 60vh;
+padding: 0.5rem;
+
+}
+.suggestBox span{
+
+  display: flex;
+  
+  
+}
+.suggestBox p{
+
+  
+  position: absolute;
+  right: 50%;
+  top: 5%;
+  font-size: 12px;
+  padding-top: 0.5rem;
+  color: gray;
+
+  
+
+}
+ .suggestBox h4{
+
+  display: flex;
+  padding: 0.5rem;
+  margin-top: 0%;
+  color: gray;
+  font-size: 14px;
+  font-weight: 500;
+ }
+ .suggestUl{
+
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-inline-start: 0%;
+ }
+ .suggestUl li{
+
+  padding: 0.5rem;
+ }
+
+ .suggestUl li h5{
+
+  
+  
+  padding-top: 5%;
+  margin-top: 5%;
+  font-size: 14px;
+  padding-left: 0.5rem;
+
+  
+ }
+ .suggestUl li h6{
+
+  
+  
+  
+  
+  
+ }
+ .suggestUl button{
+
+  
+  position: absolute;
+  right: 0;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  background-color: white;
+  border: none;
+  color: blue;
+  
+ }
+ .suggestBox h2{
+
+  
+  position: absolute;
+  right: 45%;
+  padding-top: 0%;
+  margin-top: 5%;
+  font-size: 14px;
+  
+ }
+ .GetUserContainer{
+
+
+width: 50rem;
+margin: auto;
+height: 100vh;
+padding: 1rem;
+
+
+ }
+ .userInfoContainer{
+  
+  width: 50rem;
+  height: 50vh;
+  display: flex;
+  margin: auto;
+border-bottom:1px solid wheat ;
+position: absolute;
+
+ }
+ .imgContainer{
+  
+width: 25rem;
+
+ }
+ .userInfo{
+  
+  width: 25rem;
+display: flex;
+flex-direction: column;
+padding-top: 2rem;
+
+
+ }
+ .userInfoP{
+
+  font-size: 20px;
+  margin-top: 0%;
+  display:flex;
+  margin-left: 3rem;
+  font-weight: 400;
+  padding-bottom: 0.3rem;
+ }
+ .userInfo p{
+
+  margin-top: 0%;
+  display:flex;
+  margin-left: 3rem;
+  font-size: 14px;
+
+ }
+ .userInfo span{
+
+  display: flex;
+  justify-content: space-between;
+ }
+ .userInfo span button{
+
+  background-color: wheat;
+  margin:auto ;
+  margin-top: 0%;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  width: 25%;
+  font-weight: 600;
+  margin-left: 1rem;
+ }
+
+ .userInfo div{
+
+  display: flex;
+  justify-content: center;
+  margin-left:0% ;
+
+  
+  
+ }
+ .userInfo div p{
+
+  padding-right: 1rem;
+ }
+ .circle-image-user{
+
+
+  width: 200px; /* Set your desired width */
+  height: 200px; /* Set your desired height */
+  border-radius: 50%;
+  overflow: hidden; 
+  padding: 2rem;
+ }
+ .userPgTogglePost{
+
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  position: absolute;
+  right: 0%;
+  top: 55.5%;
+ }
+ .userPgTogglePost img{
+  margin-left: 1rem;
+  padding-top: 1rem;
+  
+
+  
+ }
+ .userPgTogglePost button{
+  margin-right: 1rem;
+  border: 1px solid white;
+  background-color: white;
+  font-size: 12px;
+  padding-top: 1rem;
+  
+  
+
+  
+ }
+ .userPgData{
+
+  margin-top: 22rem;
+ }
+ .createDivContainer{
+
+    
+position: fixed;
+display: flex;
+
+width: 50%;
+height: 60vh;
+  left: 0;
+margin: auto;
+
+  z-index: 999;
+  margin-left: 20rem;
+  
+  background-color: #fff;
+  border: 1px solid black;
+  margin-top: 5rem;
+  border-radius: 1rem;
+ }
+ .pCreate{
+
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 97.8%;
+  padding: 0.5rem;
+  border-radius:0.5rem ;
+  
+ }
+ .imgUpload{
+
+  border-right: 1px solid black;
+  width: 50%;
+  margin-top: 3rem;
+  border-top: 1px solid black;
+ }
+ .postUpload{
+
+  
+  width: 50%;
+  padding: 1rem;
+  margin-top: 3rem;
+  border-top: 1px solid black;
+ }
+ .spanCreate h3{
+  background-color: #fff;
+  position: absolute;
+  top: 17%;
+  right: 27%;
+  font-size: 16px;
+  font-weight: 500;
+ }
+ 
+}
+
+
+
