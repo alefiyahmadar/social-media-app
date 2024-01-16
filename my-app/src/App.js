@@ -6,11 +6,26 @@ import { BookMark } from "./Pages/BookMark";
 import { useContext } from "react";
 import { MediaContext} from "./Contexts/contextProvider"
 import { UserPage } from "./cards/userPage";
+import { useState , useRef } from "react";
 
 
 function App() {
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+
   const {setShowSinglePost ,  showSinglePost , user} = useContext(MediaContext)
+
+  const HandleImgChange =(e)=>{
+
+    const file = e.target.files[0]
+
+    if(file){
+
+      setSelectedImage(file)
+    }
+  }
 
   
   return (
@@ -31,8 +46,30 @@ function App() {
       </nav>
 
       <div className="createDivContainer">
-        <span className="pCreate">Create new post</span>
-        <div className="imgUpload">00</div>
+        <span className="pCreate">Create new post <button>Share</button></span>
+        <div className="imgUpload">
+
+          <input 
+          type="file"
+          accept="image/*"
+          onChange={HandleImgChange}
+          style={{display:"none"}}
+          ref={fileInputRef}/>
+
+          <button onClick={() => fileInputRef.current.click()}>Upload image</button>
+
+          {selectedImage && (
+        <div>
+          <p>Selected Image:</p>
+          <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
+          
+        </div>
+      )}
+
+
+
+          
+        </div>
 
         <div className="postUpload">
 
@@ -46,7 +83,7 @@ function App() {
         
         </span>
 
-        <input/>
+        <textarea  placeholder="Write a caption..."/>
         </div>
       </div>
 
