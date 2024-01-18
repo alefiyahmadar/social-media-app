@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState } from "react"
 import { users } from "../backend/db/users"
 import { v4 as uuid } from "uuid";
@@ -18,6 +19,9 @@ export const ContextProvider = ({ children }) => {
     const [showSinglePost, setShowSinglePost] = useState(false)
     const [GetUsers, SetUsersArr] = useState(users)
     const [showCreateDiv , setCreateDiv] = useState(false)
+    const [BookMark , setBookmark] = useState([])
+    const [showSaved , setShowSaved ] = useState(false)
+    const [getCmtBarMob , setCmtMob ]=useState(false)
     const [user , setUser] = useState( {
         _id: uuid(),
         firstName: "Adarsh",
@@ -28,6 +32,7 @@ export const ContextProvider = ({ children }) => {
         updatedAt: formatDate(),
         profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
       })
+      
 
 
 
@@ -52,12 +57,13 @@ export const ContextProvider = ({ children }) => {
 
         setSinglePost([findPost])
         setShowSinglePost(true)
+        setCmtMob(true)
 
 
     }
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv }}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob  }}>
 
         {children}
 

@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { MediaContext } from "../Contexts/contextProvider"
+import { useNavigate } from "react-router-dom"
 
 export const SinglePostCard = (post) => {
 
@@ -13,14 +14,17 @@ export const SinglePostCard = (post) => {
         updatedAt,
         comments, image } = post
 
-    const { GetUsers , showSinglePost } = useContext(MediaContext)
+    const { GetUsers , showSinglePost , setShowSinglePost } = useContext(MediaContext)
     console.log(GetUsers)
     
+    const navigate = useNavigate()
+    const getLocation = window.location.href
+    console.log(getLocation)
 
 
     const getProfile = GetUsers.find((e) => e.username === username ? e.profileImg : null)
 
-    return (<div className="popUpContainer">
+    return (<div className="popUpContainer" >
 
         
 
@@ -33,7 +37,7 @@ export const SinglePostCard = (post) => {
                 <div class="circle-image">
                     <img src={getProfile.username === username ? getProfile.profileImg : ""} />
                 </div>
-                <h2>{username}</h2>
+                <h2 className="linkH2" onClick={()=>navigate(`/user/${username}` )}>{username}</h2>
 
             </span>
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { MediaContext } from "../Contexts/contextProvider"
 import { SinglePostCard } from "./singlePostCard"
@@ -8,9 +8,13 @@ export const UserPage =()=>{
     
 const {usernameId} = useParams()
 
-const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost} = useContext(MediaContext)
+const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved} = useContext(MediaContext)
 
-const [showSaved , setShowSaved ] = useState(false)
+
+
+useEffect(()=>{
+    setShowSinglePost(false)
+},[setShowSinglePost])
 
 console.log(GetUsers)
 const users = JSON.parse(localStorage.getItem("userArray"))
@@ -20,6 +24,7 @@ const users = JSON.parse(localStorage.getItem("userArray"))
  const getNumberOfPost = DataPost.filter((e)=>e.username === usernameId)
  console.log(getNumberOfPost.length)
 
+ const getLatestPost = DataPost.slice(-4)
     return(<div className="explore-container">
 
         <div className="userInfoContainer" >
@@ -52,9 +57,11 @@ const users = JSON.parse(localStorage.getItem("userArray"))
         <img width="18" height="18" src="https://img.icons8.com/material-sharp/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>  <button style={{borderTop:!showSaved ? "none" : "1px solid black"}} onClick={()=>setShowSaved(true)}>SAVED</button>
         </div>
 
-        <img onClick={()=>setShowSinglePost(false)} style={{display:showSinglePost ? "flex" :"none"}} className="cross" width="24" height="24" src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="multiply--v1"/>
+
         
         <div className="PopUpSinglePost" style={{ display: showSinglePost ? "flex" : "none"  }}>
+
+        <img onClick={()=>setShowSinglePost(false)} style={{display:showSinglePost ? "block" :"none" , position:"absolute" , right:"0"}} className="cross" width="24" height="24" src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="multiply--v1"/>
             {
 
                 SinglePost.map((e) => <SinglePostCard {...e} />)
@@ -63,11 +70,43 @@ const users = JSON.parse(localStorage.getItem("userArray"))
 
 
 
-<div className="userPgData" >
+<div className="userPgData" style={{display:showSaved ? "none" :"block"}} >
  
         {
             DataPost.map((e)=> e.username === usernameId ? <PostCard {...e} overlay/> :null)
         }
         </div>
+
+        <div className="postSaveContainer" style={{display:showSaved ? "block" :"none" }}>
+   
+        {
+    DataPost.map((e)=>< PostCard {...e} overlay/>)
+}
+      
+
+
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>)
 }

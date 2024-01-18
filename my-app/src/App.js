@@ -7,13 +7,15 @@ import { useContext } from "react";
 import { MediaContext} from "./Contexts/contextProvider"
 import { UserPage } from "./cards/userPage";
 import { useState , useRef } from "react";
+import { ResizablePopUp } from "./cards/resizablePop";
+
 
 
 function App() {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-
+  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob} = useContext(MediaContext)
 
   const {setShowSinglePost ,  showSinglePost , user} = useContext(MediaContext)
 
@@ -26,28 +28,34 @@ function App() {
       setSelectedImage(file)
     }
   }
-
+  
   
   return (
 
     
-    <div className="App"    style={{   backgroundColor:showSinglePost  ?"rgba(0, 0, 0, 0.3)" :"" , position:showSinglePost ? "fixed" :""}}>
+    <div className="App"    style={{   backgroundColor: window.innerWidth > 430 ? showSinglePost  || showCreateDiv  ?"rgba(0, 0, 0, 0.3)" :"" :"", position: window.innerWidth > 430 ? showSinglePost || showCreateDiv ? "fixed" :"" : getCmtBarMob ? "fixed" :null }}>
       
 
       <nav className="nav">
 
       
-        <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>Home</span></NavLink>
-        <NavLink to="/explore"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/compass.png" alt="compass"/>Explore</span></NavLink>
-        <NavLink to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>Bookmark</span></NavLink>
-        <NavLink onClick={()=>console.log("create")}><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>Create</span></NavLink>
+
+
+
+
+        <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>{ window.innerWidth > 430 ? "Home" : null}</span></NavLink>
+        <NavLink to="/explore"><span>{  window.innerWidth > 430 ? <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/compass.png" alt="compass"/>: <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/search--v1.png" alt="search--v1"/>}{ window.innerWidth > 430 ? "Explore" : null}</span></NavLink>
+        <NavLink to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>{ window.innerWidth > 430 ? "Bookmark" : null}</span></NavLink>
+        <NavLink onClick={()=>setCreateDiv(true)}><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>{ window.innerWidth > 430 ? "Create" : null}</span></NavLink>
         
 
       </nav>
 
-      <div className="createDivContainer">
+      <img onClick={()=>setCreateDiv(false) } style={{display: window.innerWidth > 430? showCreateDiv  ? "flex" :"none" :"none"}} className="cross" width="24" height="24" src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="multiply--v1"/>
+
+      <div className="createDivContainer" style={{display:showCreateDiv ? "flex" :"none"}}> 
         <span className="pCreate">Create new post <button>Share</button></span>
-        <div className="imgUpload">
+        <div className="imgUpload"   >
 
           <input 
           type="file"
@@ -56,12 +64,16 @@ function App() {
           style={{display:"none"}}
           ref={fileInputRef}/>
 
-          <button onClick={() => fileInputRef.current.click()}>Upload image</button>
+          <button style={{display:selectedImage ? "none" :"flex"}} onClick={() => fileInputRef.current.click()}>Select from computer</button>
+
+          
 
           {selectedImage && (
-        <div>
-          <p>Selected Image:</p>
+        <div className="imgDiv"  style={{backgroundImage: selectedImage ? `url("${selectedImage}")` : 'none',
+      }}  >
+          
           <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
+          
           
         </div>
       )}
@@ -86,6 +98,9 @@ function App() {
         <textarea  placeholder="Write a caption..."/>
         </div>
       </div>
+
+      { getCmtBarMob ?  <ResizablePopUp /> :null}
+
 
       <Routes>
         <Route path="/" element={<HomePage/>}></Route>
