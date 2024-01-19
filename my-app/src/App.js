@@ -40,7 +40,8 @@ function App() {
 
       
 
-
+      <NavLink className="brandName" >
+      <img style={{paddingLeft:"1rem"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/bubble.png" alt="bubble"/> <span ><img style={{paddingRight:"0"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/bubble.png" alt="bubble"/>Bubble</span></NavLink>
 
 
         <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>{ window.innerWidth > 430 ? "Home" : null}</span></NavLink>
@@ -53,7 +54,7 @@ function App() {
 
       <img onClick={()=>setCreateDiv(false) } style={{display: window.innerWidth > 430? showCreateDiv  ? "flex" :"none" :"none"}} className="cross" width="24" height="24" src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="multiply--v1"/>
 
-      <div className="createDivContainer" style={{display:showCreateDiv ? "flex" :"none"}}> 
+      <div className="createDivContainer" style={{display: window.innerWidth > 430 ?showCreateDiv ? "flex" :"none" : "none"}}> 
         <span className="pCreate">Create new post <button>Share</button></span>
         <div className="imgUpload"   >
 

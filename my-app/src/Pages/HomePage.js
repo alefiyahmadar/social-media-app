@@ -5,6 +5,7 @@ import { SinglePostCard } from "../cards/singlePostCard"
 import { users } from "../backend/db/users"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 
 export const HomePage = () => {
@@ -23,6 +24,7 @@ export const HomePage = () => {
 
     return (<div className="explore-container">
 
+
        
 
         <div className="suggestBox">
@@ -38,7 +40,7 @@ export const HomePage = () => {
 <ul className="suggestUl">
 
 {
-            users.map((e)=><li style={{display: user.username === e.username ? "none" :"flex"}}>
+            users.map((e)=><li key={e._id} style={{display: user.username === e.username ? "none" :"flex"}}>
 
 <span >
        <div class="circle-image">
@@ -68,13 +70,22 @@ export const HomePage = () => {
 
                 SinglePost.map((e) => <SinglePostCard {...e} />)
             }</div>
+
+            <div className="homeHeader" >
             
-        
+      <span style={{display:"flex"}} ><img style={{paddingRight:"0"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/bubble.png" alt="bubble"/>Bubble</span>
+
+      <img style={{position:"absolute" , right:"10%" , paddingRight:"0.5rem"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>
+
+
+            </div>
+            
+        <div style={{paddingTop:window.innerWidth < 430 ? "4rem" :""}}>
 
         {
             DataPost.map((e) => <PostCard {...e} />)
         }
-        
+        </div>
 
 
     </div>)

@@ -24,7 +24,7 @@ export const SinglePostCard = (post) => {
 
     const getProfile = GetUsers.find((e) => e.username === username ? e.profileImg : null)
 
-    return (<div className="popUpContainer" >
+    return (<div className="popUpContainer" key={_id} >
 
         
 

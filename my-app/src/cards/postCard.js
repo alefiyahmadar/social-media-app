@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { MediaContext } from "../Contexts/contextProvider"
 import { useNavigate } from "react-router-dom"
 
-export const PostCard = (post)=>{
+export const PostCard = (post , index)=>{
 
 const {
 _id ,
@@ -28,7 +28,7 @@ const navigate = useNavigate()
 const getProfile = GetUsers.find((e)=>e.username === username ? e.profileImg :null)
 
 
-    return(<div className="PostCard-container"   onClick={ url ==="http://localhost:3000/" ? null: ()=>GetSinglePost(_id)   } >
+    return(<div className="PostCard-container"   onClick={ url ==="http://localhost:3000/" ? null: ()=>GetSinglePost(_id)   } key={_id} >
 
         <span>
        <div className="circle-image">

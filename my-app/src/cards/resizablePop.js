@@ -34,7 +34,7 @@ export const ResizablePopUp = ()=>{
         <div>
             <ul style={{margin:"auto" , paddingInline:"0" , padding:"1rem" }}>
             {
-                SinglePost.map((e)=>e.comments.map(({username , text})=><li style={{listStyle:"none"}}><div>  <span style={{display:"flex" , padding:"0.5rem" , marginBottom:"1rem"}}>
+                SinglePost.map((e)=>e.comments.map(({username , text , _id})=><li key={_id} style={{listStyle:"none"}}><div>  <span style={{display:"flex" , padding:"0.5rem" , marginBottom:"1rem"}}>
                 <div className="circle-image" style={{width:"35px" , height:"35px"}} >
                 <img  width="30" height="30" src={GetUsers.find((e)=>e.username === username ?e.profileImg :null).profileImg }/>
          

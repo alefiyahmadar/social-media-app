@@ -15,6 +15,7 @@ export const ContextProvider = ({ children }) => {
 
 
     const [DataPost, setPostData] = useState([])
+    const[GetNewArray , setNewArray] = useState([])
     const [SinglePost, setSinglePost] = useState([])
     const [showSinglePost, setShowSinglePost] = useState(false)
     const [GetUsers, SetUsersArr] = useState(users)
@@ -22,6 +23,7 @@ export const ContextProvider = ({ children }) => {
     const [BookMark , setBookmark] = useState([])
     const [showSaved , setShowSaved ] = useState(false)
     const [getCmtBarMob , setCmtMob ]=useState(false)
+    const [showPost , setPost] = useState(false)
     const [user , setUser] = useState( {
         _id: uuid(),
         firstName: "Adarsh",
@@ -62,8 +64,23 @@ export const ContextProvider = ({ children }) => {
 
     }
 
+    const GetExploreScroll = (id)=>{
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob  }}>
+        setPost(true)
+
+        const getPost = DataPost.find((e)=>e._id === id)
+        
+        const getOtherPost = DataPost.filter((e)=>e._id !== id)
+          const NewArray = [getPost , ...getOtherPost]
+          setNewArray(NewArray)
+            
+    
+    }
+    
+    
+
+
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray  }}>
 
         {children}
 
