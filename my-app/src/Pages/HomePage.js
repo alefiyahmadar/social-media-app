@@ -75,7 +75,7 @@ export const HomePage = () => {
             
       <span style={{display:"flex"}} ><img style={{paddingRight:"0"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/bubble.png" alt="bubble"/>Bubble</span>
 
-      <img style={{position:"absolute" , right:"10%" , paddingRight:"0.5rem"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>
+      <img onClick={()=>navigate("/newPost")} style={{position:"absolute" , right:"10%" , paddingRight:"0.5rem"}} width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>
 
 
             </div>

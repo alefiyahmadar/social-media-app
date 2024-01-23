@@ -102,5 +102,4 @@ const getProfile = GetUsers.find((e)=>e.username === username ? e.profileImg :nu
 
     </div>)
 
-
 }

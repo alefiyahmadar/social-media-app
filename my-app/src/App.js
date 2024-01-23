@@ -8,6 +8,7 @@ import { MediaContext} from "./Contexts/contextProvider"
 import { UserPage } from "./cards/userPage";
 import { useState , useRef } from "react";
 import { ResizablePopUp } from "./cards/resizablePop";
+import { AddNewPost } from "./Pages/AddnewPost";
 
 
 
@@ -108,6 +109,7 @@ function App() {
         <Route path="/Bookmark" element={<BookMark/>}></Route>
         <Route path="/explore" element={<ExplorePage/>} ></Route>
         <Route path="/user/:usernameId" element={<UserPage/>}></Route>
+        <Route path="/newPost" element={<AddNewPost/>}></Route>
       </Routes>
       
        
