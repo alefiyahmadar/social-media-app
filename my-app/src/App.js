@@ -1,4 +1,5 @@
 import "./App.css";
+import {React} from "react"
 import {Routes , Route , NavLink} from "react-router-dom"
 import { HomePage } from "./Pages/HomePage";
 import { ExplorePage } from "./Pages/ExplorePage";

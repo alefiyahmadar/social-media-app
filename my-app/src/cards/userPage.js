@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { MediaContext } from "../Contexts/contextProvider"

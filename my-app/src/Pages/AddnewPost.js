@@ -1,4 +1,6 @@
 import {  useContext } from "react"
+import React from 'react';
+
 import { MediaContext } from "../Contexts/contextProvider"
 import { useNavigate } from "react-router-dom"
 

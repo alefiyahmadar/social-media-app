@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useContext } from "react"
 import { MediaContext } from "../Contexts/contextProvider"
 
