@@ -25,6 +25,10 @@ export const ContextProvider = ({ children }) => {
     const [showSaved , setShowSaved ] = useState(false)
     const [getCmtBarMob , setCmtMob ]=useState(false)
     const [showPost , setPost] = useState(false)
+    const [isLoggedIn , setIsLoggedIn] = useState(false)
+
+
+
     const [user , setUser] = useState( {
         _id: uuid(),
         firstName: "Adarsh",
@@ -36,6 +40,7 @@ export const ContextProvider = ({ children }) => {
         profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
       })
       
+
 
 
 
@@ -81,7 +86,7 @@ export const ContextProvider = ({ children }) => {
     
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray  }}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, setShowSinglePost , user , setUser , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn }}>
 
         {children}
 

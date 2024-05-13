@@ -10,7 +10,7 @@ export const UserPage =()=>{
     
 const {usernameId} = useParams()
 
-const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved} = useContext(MediaContext)
+const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved ,  user , setUser} = useContext(MediaContext)
 
 
 
@@ -41,7 +41,7 @@ const users = JSON.parse(localStorage.getItem("userArray"))
 
             <span >
 
-            <h3 className="userInfoP">{GetDp.username}</h3><button>Edit profile</button><button>View Archive</button>
+            <h3 className="userInfoP">{GetDp.username}</h3><button >Edit profile</button><button>View Archive</button>
        </span>
            
             <div >

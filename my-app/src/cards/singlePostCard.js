@@ -76,14 +76,7 @@ export const SinglePostCard = (post) => {
                     </li>)})
                 }
                 </ul>
-                
-
-            </div>
-
-
-
-
-<div className="commentBar">
+                <div className="commentBar">
 
 
     <div className="commentImgs">
@@ -99,6 +92,13 @@ export const SinglePostCard = (post) => {
         <button className="PostCmtBtn">post</button>
     </div>
 </div>
+
+            </div>
+
+
+
+
+
 
         </div>
        

@@ -276,7 +276,7 @@ padding-left: 1rem;
   height: 250px; /* Set the specific height for your div */
   overflow-x: auto; /* Hide the vertical scrollbar */
 
-  width: 29rem;
+  
 margin-top: 4rem;
 padding-top: 0.5rem;
 border-top: 0.1px solid wheat;
@@ -351,7 +351,7 @@ width: 100%;
 
   
   display: flex;
-width: 33%;
+width: 40%;
 top: 60%;
 height: 25vh;
 border-top: 0.1px wheat solid;
@@ -832,6 +832,18 @@ margin-top: 22rem;
  }
  .image-grid{
   display: none;
+ }
+ .loginContainer{
+
+  width: 20%; 
+  height: 60%;
+  padding: 20px; 
+  position: absolute; 
+  top: 35%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  
+  border: 1px solid black; 
  }
 
 

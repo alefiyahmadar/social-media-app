@@ -10,6 +10,7 @@ import { UserPage } from "./cards/userPage";
 import { useState , useRef } from "react";
 import { ResizablePopUp } from "./cards/resizablePop";
 import { AddNewPost } from "./Pages/AddnewPost";
+import { LoginPage } from "./Pages/LoginPage";
 
 
 
@@ -17,7 +18,7 @@ function App() {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob} = useContext(MediaContext)
+  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob , isLoggedIn , setIsLoggedIn} = useContext(MediaContext)
 
   const {setShowSinglePost ,  showSinglePost , user} = useContext(MediaContext)
 
@@ -38,7 +39,7 @@ function App() {
     <div className="App"    style={{   backgroundColor: window.innerWidth > 430 ? showSinglePost  || showCreateDiv  ?"rgba(0, 0, 0, 0.3)" :"" :"", position: window.innerWidth > 430 ? showSinglePost || showCreateDiv ? "fixed" :"" : getCmtBarMob ? "fixed" :null }}>
       
 
-      <nav className="nav">
+      <nav style={{display:isLoggedIn? "flex" :"none"}} className="nav">
 
       
 
@@ -106,11 +107,11 @@ function App() {
 
 
       <Routes>
-        <Route path="/" element={<HomePage/>}></Route>
-        <Route path="/Bookmark" element={<BookMark/>}></Route>
-        <Route path="/explore" element={<ExplorePage/>} ></Route>
-        <Route path="/user/:usernameId" element={<UserPage/>}></Route>
-        <Route path="/newPost" element={<AddNewPost/>}></Route>
+        <Route path="/" element={isLoggedIn ? <HomePage/> : <LoginPage/>}></Route>
+        <Route path="/Bookmark" element={isLoggedIn ? <BookMark/>:<LoginPage/>}></Route>
+        <Route path="/explore" element={isLoggedIn ? <ExplorePage/> :<LoginPage/>} ></Route>
+        <Route path="/user/:usernameId" element={ isLoggedIn ? <UserPage/> :<LoginPage/>}></Route>
+        <Route path="/newPost" element={ isLoggedIn ? <AddNewPost/>:<LoginPage/>}></Route>
       </Routes>
       
        

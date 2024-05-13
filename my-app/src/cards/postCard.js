@@ -82,7 +82,7 @@ const getProfile = GetUsers.find((e)=>e.username === username ? e.profileImg :nu
     <p  > {content} <button style={{display:More ? "none" :"flex"}} className="moreMobileBtn" onClick={()=>setMore(!More)}>...More</button> </p>
 
 
-    <button   className="readMoreBtn" onClick={()=>setMore(!More)}>{ window.innerWidth > 425 || More ? "less" :"...More"}</button>
+    <button   className="readMoreBtn" onClick={()=>setMore(!More)}>{  More ? "less" :"...More"}</button>
 
     </div>
 </span>
