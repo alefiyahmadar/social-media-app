@@ -11,6 +11,7 @@ import { useState , useRef } from "react";
 import { ResizablePopUp } from "./cards/resizablePop";
 import { AddNewPost } from "./Pages/AddnewPost";
 import { LoginPage } from "./Pages/LoginPage";
+import {SignUpPage} from "./Pages/SignUp"
 
 
 
@@ -39,7 +40,7 @@ function App() {
     <div className="App"    style={{   backgroundColor: window.innerWidth > 430 ? showSinglePost  || showCreateDiv  ?"rgba(0, 0, 0, 0.3)" :"" :"", position: window.innerWidth > 430 ? showSinglePost || showCreateDiv ? "fixed" :"" : getCmtBarMob ? "fixed" :null }}>
       
 
-      <nav style={{display:isLoggedIn? "flex" :"none"}} className="nav">
+      <nav style={{display:isLoggedIn? "block" :"none"}} className="nav">
 
       
 
@@ -112,6 +113,8 @@ function App() {
         <Route path="/explore" element={isLoggedIn ? <ExplorePage/> :<LoginPage/>} ></Route>
         <Route path="/user/:usernameId" element={ isLoggedIn ? <UserPage/> :<LoginPage/>}></Route>
         <Route path="/newPost" element={ isLoggedIn ? <AddNewPost/>:<LoginPage/>}></Route>
+        <Route path="/signup" element={<SignUpPage/>}></Route>
+        <Route path="/login" element={<LoginPage/>}></Route>
       </Routes>
       
        

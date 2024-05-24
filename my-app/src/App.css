@@ -834,17 +834,61 @@ margin-top: 22rem;
   display: none;
  }
  .loginContainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 
   width: 20%; 
   height: 60%;
   padding: 20px; 
   position: absolute; 
-  top: 35%; 
+  top: 40%; 
   left: 50%; 
   transform: translate(-50%, -50%); 
   
-  border: 1px solid black; 
+  border: 0.1px solid lightgray; 
  }
+ .loginContainer h3{
+  font-size: 30px;
+  margin-top: 0.5em;
+ }
+ .loginContainer input{
+
+  padding: 0.5rem;
+  width: 75%;
+  margin-bottom: 0.5rem;
+  
+ }
+ .loginContainer button{
+  width: 80%;
+  
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #60a5fa;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 0.5rem;
+ }
+ .loginContainer button:hover{
+  background-color: #3b82f6;
+ }
+ .loginContainer p{
+  color: gray;
+  font-weight: 600;
+  font-size: 12px;
+  padding-top: 1rem;
+ }
+ .loginContainer h4{
+   font-weight: 400;
+ }
+ .loginContainer NavLink{
+
+  
+ }
+ 
+
 
 
 
