@@ -9,12 +9,31 @@ export const LoginPage = ()=>{
     const [logUsername , setUsername] = useState()
     const [logPassword , setPassword] =useState()
 
-    const {isLoggedIn , setIsLoggedIn  , GuestHandler} = useContext(MediaContext)
+    const {isLoggedIn , setIsLoggedIn  , GuestHandler , GetUsers} = useContext(MediaContext)
     const navigate = useNavigate()
 
     const LogInHandler =()=>{
-    const findUser = JSON.parse(localStorage.getItem("usersArray"))
-    console.log(findUser)
+        const usersList = JSON.parse(localStorage.getItem("usersArray"))
+        console.log(usersList)
+        console.log(logUsername)
+        if(usersList.find((e)=>e.username === logUsername && e.password === logPassword)){
+
+            console.log("userExist")
+
+            const GetUser = usersList.find((e)=>e.username === logUsername && e.password === logPassword)
+            localStorage.setItem("user" , JSON.stringify(GetUser))
+            setIsLoggedIn(true)
+            navigate("/")
+
+
+        }else{
+            console.log("userNotFound")
+        }
+
+        
+
+        
+    
     }
 
     return(<div style={{ }}>
@@ -22,9 +41,9 @@ export const LoginPage = ()=>{
         <div className="loginContainer">
             <h3>Bubble</h3>
             <span>
-            <input onChange={(e)=>setUsername(e.target.value)} placeholder="username or email"/>
+            <input type="email"  onChange={(e)=>setUsername(e.target.value)} placeholder="username or email" value={logUsername}/>
 
-            <input onChange={(e)=>setPassword(e.target.value)} placeholder="password"/>
+            <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder="password" value={logPassword}/>
             <button onClick={LogInHandler} >Log in</button>
 
  <h4>Don't have an account? <NavLink to={"/signup"}  style={{textDecoration:"none" , fontWeight:"bold" , color:"#60a5fa"}}>Sign up</NavLink></h4>

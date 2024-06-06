@@ -25,12 +25,13 @@ const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob }  =
 const url = window.location.href
 
 
+
 const navigate = useNavigate()
 
 const getProfile = GetUsers.find((e)=>e.username === username ? e.profileImg :null)
 
 
-    return(<div className="PostCard-container"   onClick={ url ==="http://localhost:3000/" ? null: ()=>GetSinglePost(_id)   } key={_id} >
+    return(<div className="PostCard-container"   onClick={ url.charAt(23) ==="e" && "u" ? ()=>GetSinglePost(_id) : null   } key={_id} >
 
         <span>
        <div className="circle-image">

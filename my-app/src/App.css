@@ -581,7 +581,7 @@ padding: 1rem;
  .userInfoContainer{
   
   width: 50rem;
-  height: 50vh;
+  height: 40vh;
   display: flex;
   margin: auto;
 border-bottom:1px solid wheat ;
@@ -666,7 +666,7 @@ padding-top: 2rem;
   justify-content: center;
   position: absolute;
   right: 0%;
-  top: 55.5%;
+  top: 100%;
  }
  .userPgTogglePost img{
   margin-left: 1rem;
@@ -677,10 +677,12 @@ padding-top: 2rem;
  }
  .userPgTogglePost button{
   margin-right: 1rem;
-  border: 1px solid white;
+  border-top: 1px solid wheat;
   background-color: white;
   font-size: 12px;
   padding-top: 1rem;
+  border: none;
+  
   
   
 

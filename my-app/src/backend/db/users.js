@@ -9,8 +9,9 @@ export const users = [
   
   {
     _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
+    
+someUserAttribute1: "Adarsh",
+someUserAttribute2: "Balika",
     username: "adarshbalika",
     password: "adarshBalika123",
     createdAt: formatDate(),
@@ -22,8 +23,8 @@ export const users = [
   },
    {
       _id: uuid(),
-      firstName: "Shubham",
-      lastName: "Soni",
+      someUserAttribute1: "Shubham",
+      someUserAttribute2: "Soni",
       username: "shubhamsoni",
       password: "shubhamsoni890",
 
@@ -37,8 +38,8 @@ export const users = [
     
    {
       _id: uuid(),
-      firstName: "Soham",
-      lastName: "Shah",
+      someUserAttribute1: "Soham",
+      someUserAttribute2: "Shah",
       username: "sohamshah",
       password: "sohamshah567",
       createdAt: formatDate(),
@@ -50,8 +51,8 @@ export const users = [
     },
     {
       _id: uuid(),
-      firstName: "Mary",
-      lastName: "Jane",
+      someUserAttribute1: "Mary",
+      someUserAttribute2: "Jane",
       username: "maryy",
       password: "maryjane990",
       createdAt: formatDate(),

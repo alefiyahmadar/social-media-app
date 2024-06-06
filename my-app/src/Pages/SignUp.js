@@ -5,22 +5,42 @@ import { MediaContext } from "../Contexts/contextProvider"
 
 export const SignUpPage =()=>{
 
-const {isLoggedIn , setIsLoggedIn , user , setUser  , usersArray , setUserArray} = useContext(MediaContext)
+const {isLoggedIn , setIsLoggedIn   , loggedInUser , setLoggedInUser , GetUsers, SetUsersArr} = useContext(MediaContext)
 
 
     const navigate = useNavigate()
     const SignUpHandler =async()=>{
 
         try{
+            const creds = {
 
-            const serializedUser = JSON.stringify(user)
-            console.log(serializedUser)
-            localStorage.setItem("user" , serializedUser)
+                    
+                email:loggedInUser.email, password:loggedInUser.password, someUserAttribute1:loggedInUser.firstName, someUserAttribute2:loggedInUser.lastName , username:loggedInUser.username , profileImg:"https://i.pinimg.com/736x/a8/57/00/a85700f3c614f6313750b9d8196c08f5.jpg"
+              
+             
+        }
+        
+        const res = await fetch("/api/auth/signup" , { method:"POST" , body:JSON.stringify(creds) })
+
+        
+        
 
 
-            const updatedArray = [...usersArray , JSON.parse(localStorage.getItem("user"))]
-            console.log(updatedArray)
-            localStorage.setItem("usersArray" , JSON.stringify(updatedArray))
+
+        const {createdUser } = await res.json()
+        console.log(createdUser)
+        localStorage.setItem("user" , JSON.stringify(createdUser))
+
+
+        const currentUser =  JSON.parse(localStorage.getItem("user"))
+        const updatedArray = [...GetUsers , currentUser]
+        SetUsersArr(updatedArray)
+        console.log(GetUsers)
+        
+        localStorage.setItem("usersArray" , JSON.stringify(updatedArray))
+        
+
+           
 
         }catch(e){
 
@@ -29,17 +49,22 @@ const {isLoggedIn , setIsLoggedIn , user , setUser  , usersArray , setUserArray}
 
         setIsLoggedIn(true)
         navigate("/")
+        console.log(loggedInUser)
 
-        console.log(user)
+        
 
     }
 
     useEffect(()=>{
-        const storedUsers = localStorage.getItem("usersArray")
-    if(storedUsers){
-        setUserArray(JSON.parse(storedUsers))
-    }
-    },[setUserArray])
+
+        
+        const storedUsers = localStorage.getItem('usersArray');
+        if (storedUsers) {
+          SetUsersArr(JSON.parse(storedUsers));
+        }
+    },[SetUsersArr])
+
+    
 
 
     return(<div>
@@ -48,11 +73,11 @@ const {isLoggedIn , setIsLoggedIn , user , setUser  , usersArray , setUserArray}
         <h5 style={{marginTop:"0rem" , color:"gray" , fontSize:"15px" , padding:"1rem"}}>Sign up to see photos and videos from your friends.</h5>
         <span>
         
-            <input onChange={(e)=>setUser({...user , numberEmail:e.target.value})} placeholder="Mobile Number or email"/>
-            <input onChange={(e)=>setUser({...user , firstName:e.target.value})} placeholder="First Name"/>
-            <input onChange={(e)=>setUser({...user , lastName:e.target.value})} placeholder="Last Name"/>
-            <input onChange={(e)=>setUser({...user , username:e.target.value})} placeholder="Username"/>
-            <input onChange={(e)=>setUser({...user , password:e.target.value})} placeholder="password"/>
+            <input onChange={(e)=>setLoggedInUser({...loggedInUser , numberEmail:e.target.value})} placeholder="Mobile Number or email"/>
+            <input onChange={(e)=>setLoggedInUser({...loggedInUser , firstName:e.target.value})} placeholder="First Name"/>
+            <input onChange={(e)=>setLoggedInUser({...loggedInUser , lastName:e.target.value})} placeholder="Last Name"/>
+            <input onChange={(e)=>setLoggedInUser({...loggedInUser , username:e.target.value})} placeholder="Username"/>
+            <input onChange={(e)=>setLoggedInUser({...loggedInUser , password:e.target.value})} placeholder="password"/>
                     <button onClick={SignUpHandler}  >Sign up</button>
 
  <p>OR</p>

@@ -10,7 +10,7 @@ export const UserPage =()=>{
     
 const {usernameId} = useParams()
 
-const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved ,  user , setUser} = useContext(MediaContext)
+const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved , loggedInUser , setLoggedInUser} = useContext(MediaContext)
 
 
 
@@ -18,14 +18,17 @@ useEffect(()=>{
     setShowSinglePost(false)
 },[setShowSinglePost])
 
-console.log(GetUsers)
-const users = JSON.parse(localStorage.getItem("userArray"))
+
+const users = JSON.parse(localStorage.getItem("usersArray"))
+
  const GetDp =  users.find((e)=>e.username === usernameId ? e.profileImg :"")
  console.log(GetDp.profileImg)
 
  const getNumberOfPost = DataPost.filter((e)=>e.username === usernameId)
  console.log(getNumberOfPost.length)
 
+ console.log(loggedInUser)
+ console.log(usernameId)
  const getLatestPost = DataPost.slice(-4)
     return(<div className="explore-container">
 
@@ -39,7 +42,7 @@ const users = JSON.parse(localStorage.getItem("userArray"))
         </div>
         <div className="userInfo">
 
-            <span >
+            <span style={{display:JSON.parse(localStorage.getItem("user")).username === usernameId ?"flex" :"none"}}  >
 
             <h3 className="userInfoP">{GetDp.username}</h3><button >Edit profile</button><button>View Archive</button>
        </span>
@@ -53,11 +56,12 @@ const users = JSON.parse(localStorage.getItem("userArray"))
             <p>{GetDp.firstName} {GetDp.lastName}</p>
             <p>{GetDp.status}</p>
         </div>
-        </div>
         <div className="userPgTogglePost">
-        <img width="18" height="18" src="https://img.icons8.com/ios/24/grid.png" alt="grid"/><button style={{borderTop:showSaved ? "none" : "1px solid black"}} onClick={()=>setShowSaved(false)} > POSTS</button>
-        <img width="18" height="18" src="https://img.icons8.com/material-sharp/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>  <button style={{borderTop:!showSaved ? "none" : "1px solid black"}} onClick={()=>setShowSaved(true)}>SAVED</button>
+        <img width="18" height="18" src="https://img.icons8.com/ios/24/grid.png" alt="grid"/><button style={{borderTop:showSaved ? "1px solid wheat" : "1px solid black"}} onClick={()=>setShowSaved(false)} > POSTS</button>
+        <img width="18" height="18" src="https://img.icons8.com/material-sharp/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>  <button style={{borderTop:!showSaved ? "1px solid wheat" : "1px solid black"}} onClick={()=>setShowSaved(true)}>SAVED</button>
         </div>
+        </div>
+        
 
 
         

@@ -12,10 +12,11 @@ import { NavLink } from "react-router-dom"
 
 export const HomePage = () => {
 
-    const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers} = useContext(MediaContext)
+    const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers , storedUser } = useContext(MediaContext)
 
     const { DataPost } = useContext(MediaContext)
-    console.log(users)
+    console.log(GetUsers)
+    const userList = JSON.parse(localStorage.getItem("usersArray"))
 
     useEffect(() => {
         window.scrollTo(0, 0); // For modern browsers
@@ -33,16 +34,18 @@ export const HomePage = () => {
 
         <span >
        <div class="circle-image">
-       <img width="30" height="30" src={user.profileImg}/>
+       <img width="30" height="30" src={JSON.parse(localStorage.getItem("user")).profileImg}/>
        </div>
-        <h2  >{user.username}</h2>
-        <p>{user.firstName} {user.lastName}</p>
+        <h2 onClick={()=>navigate(`/user/${storedUser.username}`)} >{JSON.parse(localStorage.getItem("user")).username}</h2>
+        <p>{JSON.parse(localStorage.getItem("user")).
+someUserAttribute1} {JSON.parse(localStorage.getItem("user")).
+someUserAttribute2}</p>
         </span>
         <h4>Suggested for you</h4>
 <ul className="suggestUl">
 
 {
-            users.map((e)=><li key={e._id} style={{display: user.username === e.username ? "none" :"flex"}}>
+            userList.map((e)=><li key={e._id} style={{display: JSON.parse(localStorage.getItem("user")).username === e.username ? "none" :"flex"}}>
 
 <span >
        <div class="circle-image">
