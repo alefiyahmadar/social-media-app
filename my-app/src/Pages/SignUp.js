@@ -64,7 +64,7 @@ const {isLoggedIn , setIsLoggedIn   , loggedInUser , setLoggedInUser , GetUsers,
         }
     },[SetUsersArr])
 
-    
+    console.log(GetUsers)
 
 
     return(<div>

@@ -14,7 +14,7 @@ export const HomePage = () => {
 
     const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers , storedUser } = useContext(MediaContext)
 
-    const { DataPost } = useContext(MediaContext)
+    const { DataPost , StoredPost } = useContext(MediaContext)
     console.log(GetUsers)
     const userList = JSON.parse(localStorage.getItem("usersArray"))
 
@@ -88,7 +88,7 @@ someUserAttribute2}</p>
         <div style={{paddingTop:window.innerWidth < 430 ? "4rem" :""}}>
 
         {
-            DataPost.map((e) => <PostCard {...e} />)
+            StoredPost.map((e) => <PostCard {...e} />)
         }
         </div>
 

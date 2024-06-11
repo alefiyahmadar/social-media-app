@@ -17,7 +17,7 @@ comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob }  = useContext(MediaContext)
+const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob ,userArrayStored }  = useContext(MediaContext)
 
 
 
@@ -27,8 +27,10 @@ const url = window.location.href
 
 
 const navigate = useNavigate()
+const usersList = JSON.parse(localStorage.getItem("usersArray"))
 
-const getProfile = GetUsers.find((e)=>e.username === username ? e.profileImg :null)
+const getProfile = usersList.find((e)=>e.username === username)
+
 
 
     return(<div className="PostCard-container"   onClick={ url.charAt(23) ==="e" && "u" ? ()=>GetSinglePost(_id) : null   } key={_id} >

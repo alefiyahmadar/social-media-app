@@ -19,9 +19,9 @@ function App() {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob , isLoggedIn , setIsLoggedIn } = useContext(MediaContext)
+  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob , isLoggedIn , setIsLoggedIn  ,newPostObj , setPostObj  , storedUser   } = useContext(MediaContext)
 
-  const {setShowSinglePost ,  showSinglePost , defaultUser} = useContext(MediaContext)
+  const {setShowSinglePost ,  showSinglePost , defaultUser , AddPostBtn} = useContext(MediaContext)
 
   const HandleImgChange =(e)=>{
 
@@ -31,7 +31,11 @@ function App() {
 
       setSelectedImage(file)
     }
+    console.log(file.name)
+   setPostObj({...newPostObj , image:file , username:storedUser.username})
+    
   }
+  
   
   
   return (
@@ -59,7 +63,7 @@ function App() {
       <img onClick={()=>setCreateDiv(false) } style={{display: window.innerWidth > 430? showCreateDiv  ? "flex" :"none" :"none"}} className="cross" width="24" height="24" src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="multiply--v1"/>
 
       <div className="createDivContainer" style={{display: window.innerWidth > 430 ?showCreateDiv ? "flex" :"none" : "none"}}> 
-        <span className="pCreate">Create new post <button>Share</button></span>
+        <span className="pCreate">Create new post <button onClick={AddPostBtn}>Share</button></span>
         <div className="imgUpload"   >
 
           <input 
@@ -74,10 +78,10 @@ function App() {
           
 
           {selectedImage && (
-        <div className="imgDiv"  style={{backgroundImage: selectedImage ? `url("${selectedImage}")` : 'none',
+        <div className="imgDiv"   style={{backgroundImage: selectedImage ? `url("${selectedImage}")` : 'none',
       }}  >
           
-          <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
+          <img  src={URL.createObjectURL(selectedImage)} alt="Selected" />
           
           
         </div>
@@ -93,14 +97,14 @@ function App() {
 
         <span className="spanCreate" >
        <div class="circle-image" >
-       <img width="30" height="30" src={defaultUser.profileImg}/>
+       <img width="30" height="30" src={storedUser.profileImg}/>
       
        </div>
-        <h3>{defaultUser.username}</h3>
+        <h3>{storedUser.username}</h3>
         
         </span>
 
-        <textarea  placeholder="Write a caption..."/>
+        <textarea onChange={(e)=>setPostObj({...newPostObj , content:e.target.value})} placeholder="Write a caption..."/>
         </div>
       </div>
 

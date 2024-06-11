@@ -2,9 +2,10 @@ import React from 'react';
 
 import { createContext, useContext, useEffect, useState } from "react"
 import { users } from "../backend/db/users"
+import { posts } from '../backend/db/posts';
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../backend/utils/authUtils";
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 
 
 export const MediaContext = createContext()
@@ -21,12 +22,14 @@ export const ContextProvider = ({ children }) => {
     const [SinglePost, setSinglePost] = useState([])
     const [showSinglePost, setShowSinglePost] = useState(false)
     const [GetUsers, SetUsersArr] = useState(users)
+    const [getPost , setGetPost] = useState(posts)
     const [showCreateDiv , setCreateDiv] = useState(false)
     const [BookMark , setBookmark] = useState([])
     const [showSaved , setShowSaved ] = useState(false)
     const [getCmtBarMob , setCmtMob ]=useState(false)
     const [showPost , setPost] = useState(false)
     const [isLoggedIn , setIsLoggedIn] = useState(false)
+   
 
     const [loggedInUser , setLoggedInUser] = useState({})
 
@@ -41,6 +44,21 @@ export const ContextProvider = ({ children }) => {
         updatedAt: formatDate(),
         profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
       })
+      const [newPostObj , setPostObj] = useState({
+      _id:uuid(),
+      image:"",
+      content:"",
+      likes: {
+        likeCount: 0,
+        likedBy: [],
+        dislikedBy: [],
+      },username: "",
+      createdAt: formatDate(),
+      updatedAt: formatDate(),
+      comments:[]
+
+
+      })
 
       
       
@@ -49,7 +67,7 @@ export const ContextProvider = ({ children }) => {
       
 const storedUser = JSON.parse(localStorage.getItem("user"))
 const userArrayStored = JSON.parse(localStorage.getItem("usersArray"))
-
+const StoredPost = JSON.parse(localStorage.getItem("PostArray"))
 
 
 storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localStorage.setItem("user" , JSON.stringify(defaultUser))
@@ -57,6 +75,7 @@ storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localSt
 
 userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArrayStored)) : localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
 
+StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
 
 
     const FetchData = async () => {
@@ -128,13 +147,25 @@ userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArraySt
             profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
           })
 
+    }
 
+    const AddPostBtn =()=>{
+console.log(newPostObj)
+const GetArray = JSON.parse(localStorage.getItem("PostArray"))
+const updatedArr = [...GetArray , newPostObj]
+setGetPost(updatedArr)
+console.log(updatedArr)
+localStorage.setItem("PostArray" , JSON.stringify(updatedArr))
+
+
+setCreateDiv(false)
+        
     }
     
     
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser                                              }}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored  }}>
 
         {children}
 

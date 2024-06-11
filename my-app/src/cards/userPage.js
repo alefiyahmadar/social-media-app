@@ -10,7 +10,7 @@ export const UserPage =()=>{
     
 const {usernameId} = useParams()
 
-const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved , loggedInUser , setLoggedInUser} = useContext(MediaContext)
+const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved , loggedInUser , setLoggedInUser , StoredPost} = useContext(MediaContext)
 
 
 
@@ -79,7 +79,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
 <div className="userPgData" style={{display:showSaved ? "none" :"block"}} >
  
         {
-            DataPost.map((e)=> e.username === usernameId ? <PostCard {...e} overlay/> :null)
+            StoredPost.map((e)=> e.username === usernameId ? <PostCard {...e} overlay/> :null)
         }
         </div>
 
