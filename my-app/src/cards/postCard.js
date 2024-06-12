@@ -17,7 +17,7 @@ comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob ,userArrayStored  , LikeHandler ,isLiked , setLiked}  = useContext(MediaContext)
+const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost}  = useContext(MediaContext)
 
 
 
@@ -30,6 +30,8 @@ const navigate = useNavigate()
 const usersList = JSON.parse(localStorage.getItem("usersArray"))
 
 const getProfile = usersList.find((e)=>e.username === username)
+
+console.log(StoredPost)
 
 
 
@@ -75,6 +77,7 @@ const getProfile = usersList.find((e)=>e.username === username)
    <div  className="homePostImg"> 
 
 <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1" onClick={()=>LikeHandler(post)} />
+<span style={{position:"absolute" }}>{}</span>
 
 
 

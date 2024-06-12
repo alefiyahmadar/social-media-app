@@ -75,7 +75,7 @@ storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localSt
 
 userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArrayStored)) : localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
 
-StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
+// StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
 
 
     const FetchData = async () => {
@@ -167,9 +167,32 @@ setCreateDiv(false)
       console.log("click" , post)
      
 
-      
+      setGetPost((prevItem)=>prevItem.map((e)=>{
+
+        if(e._id === post._id){
+
+          const isLiked = e.likes.likedBy.includes(storedUser.username)
+          const newLikedBy = isLiked ? e.likes.likedBy.filter((e)=> e !== storedUser.username) :  [...e.likes.likedBy, storedUser.username]
+          console.log(newLikedBy.length)
+
+          return {
+            ...e , likes:{...e.likes , likedBy:newLikedBy , likeCount:newLikedBy.length }
+          }
+        }else{
+          return e
+        }
+
+        
+      }))
+
+     
     
     }
+
+    useEffect(()=>{
+      localStorage.setItem("PostArray" , JSON.stringify(getPost))
+    },[getPost])
+    console.log(getPost)
     
     
     
