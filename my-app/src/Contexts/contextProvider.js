@@ -29,7 +29,7 @@ export const ContextProvider = ({ children }) => {
     const [getCmtBarMob , setCmtMob ]=useState(false)
     const [showPost , setPost] = useState(false)
     const [isLoggedIn , setIsLoggedIn] = useState(false)
-   
+   const [isLiked , setLiked] = useState(false)
 
     const [loggedInUser , setLoggedInUser] = useState({})
 
@@ -161,11 +161,22 @@ localStorage.setItem("PostArray" , JSON.stringify(updatedArr))
 setCreateDiv(false)
         
     }
+
+    const LikeHandler =(post)=>{
+
+      console.log("click" , post)
+     
+
+      
+    
+    }
+    
+    
     
     
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored  }}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked }}>
 
         {children}
 

@@ -17,7 +17,7 @@ comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob ,userArrayStored }  = useContext(MediaContext)
+const {GetSinglePost , GetUsers , showSinglePost , getCmtBarMob , setCmtMob ,userArrayStored  , LikeHandler ,isLiked , setLiked}  = useContext(MediaContext)
 
 
 
@@ -73,7 +73,11 @@ const getProfile = usersList.find((e)=>e.username === username)
 <div className="commentImgs">
 
    <div  className="homePostImg"> 
-<img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1"/>
+
+<img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1" onClick={()=>LikeHandler(post)} />
+
+
+
     <img  onClick={ ()=>GetSinglePost(_id)} width="24" height="24" src="https://img.icons8.com/material-outlined/24/comments--v1.png" alt="comments--v1"/>
     <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/share-3.png" alt="share-3"/>
     <img className="bookmarkHome" width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
