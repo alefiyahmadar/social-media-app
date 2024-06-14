@@ -21,7 +21,7 @@ function App() {
   const fileInputRef = useRef(null);
   const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob , isLoggedIn , setIsLoggedIn  ,newPostObj , setPostObj  , storedUser   } = useContext(MediaContext)
 
-  const {setShowSinglePost ,  showSinglePost , defaultUser , AddPostBtn} = useContext(MediaContext)
+  const {setShowSinglePost ,  showSinglePost , defaultUser , AddPostBtn } = useContext(MediaContext)
 
   const HandleImgChange =(e)=>{
 

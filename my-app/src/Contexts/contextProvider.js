@@ -30,6 +30,7 @@ export const ContextProvider = ({ children }) => {
     const [showPost , setPost] = useState(false)
     const [isLoggedIn , setIsLoggedIn] = useState(false)
    const [isLiked , setLiked] = useState(false)
+   const [ getCmt ,setCmt] = useState("")
 
     const [loggedInUser , setLoggedInUser] = useState({})
 
@@ -75,7 +76,7 @@ storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localSt
 
 userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArrayStored)) : localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
 
-// StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
+StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
 
 
     const FetchData = async () => {
@@ -97,7 +98,7 @@ userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArraySt
 
     const GetSinglePost = (id) => {
 
-  const findPost = DataPost.find((e) => e._id === id)
+  const findPost = StoredPost.find((e) => e._id === id)
 
         setSinglePost([findPost])
         setShowSinglePost(true)
@@ -110,9 +111,9 @@ userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArraySt
 
         setPost(true)
 
-        const getPost = DataPost.find((e)=>e._id === id)
+        const getPost = StoredPost.find((e)=>e._id === id)
         
-        const getOtherPost = DataPost.filter((e)=>e._id !== id)
+        const getOtherPost = StoredPost.filter((e)=>e._id !== id)
           const NewArray = [getPost , ...getOtherPost]
           setNewArray(NewArray)
             
@@ -148,6 +149,7 @@ userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArraySt
           })
 
     }
+   
 
     const AddPostBtn =()=>{
 console.log(newPostObj)
@@ -181,25 +183,39 @@ setCreateDiv(false)
         }else{
           return e
         }
-
         
-      }))
+      }
+      
+    )
+  )
+  localStorage.setItem("PostArray" , JSON.stringify(getPost))
 
      
     
     }
+   
 
-    useEffect(()=>{
-      localStorage.setItem("PostArray" , JSON.stringify(getPost))
-    },[getPost])
-    console.log(getPost)
-    
-    
-    
+    // useEffect(()=>{
+    //   localStorage.setItem("PostArray" , JSON.stringify(getPost))
+    // },[getPost])
     
 
+    const AddCmtBtn = (id)=>{
+      console.log(id , getCmt)
+      console.log(StoredPost)
+      const addCmt = StoredPost.map((e)=>e._id === id ? {...e , comments:[...e.comments , { _id:uuid(),username:storedUser.username, text:getCmt,votes:{upvotedBy:[],downvotedBy:[]}}]}: e)
+      console.log(addCmt)
+      localStorage.setItem("PostArray" , JSON.stringify(addCmt))
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked }}>
+
+    }
+    
+    
+    
+    
+
+
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn}}>
 
         {children}
 

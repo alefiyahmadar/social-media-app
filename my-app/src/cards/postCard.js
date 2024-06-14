@@ -17,7 +17,7 @@ comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost}  = useContext(MediaContext)
+const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost , getCmt , setCmt , AddCmtBtn , setShowSinglePost}  = useContext(MediaContext)
 
 
 
@@ -31,8 +31,8 @@ const usersList = JSON.parse(localStorage.getItem("usersArray"))
 
 const getProfile = usersList.find((e)=>e.username === username)
 
-console.log(StoredPost)
 
+console.log(getProfile)
 
 
     return(<div className="PostCard-container"   onClick={ url.charAt(23) ==="e" && "u" ? ()=>GetSinglePost(_id) : null   } key={_id} >
@@ -49,12 +49,13 @@ console.log(StoredPost)
         </span>
 
         <img className="image" style={{ display:  window.innerWidth > 430 ? showSinglePost ? "none" :"block" :""}}   src={image}></img>
+        
        
         <p style={{display:image ? "none" :"flex"}}>{content}</p>
 
 
 {
-     overlay &&   <div className="overlay"></div>
+     overlay &&   <div  className="overlay"></div>
 }
 {
     overlay &&
@@ -77,7 +78,7 @@ console.log(StoredPost)
    <div  className="homePostImg"> 
 
 <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1" onClick={()=>LikeHandler(post)} />
-<span style={{position:"absolute" }}>{}</span>
+<span style={{position:"absolute" }}>{StoredPost.map((e)=>e._id === _id ? `${e.likes.likeCount}` :"")}</span>
 
 
 
@@ -101,8 +102,8 @@ console.log(StoredPost)
 
 
 <div className="inputGrp" >
-<input className="cmtBarHome" placeholder="Add a comment..." / >
-    <button className="PostCmtBtn">Post</button>
+<input className="cmtBarHome" placeholder="Add a comment..." onChange={(e)=>setCmt(e.target.value)} / >
+    <button className="PostCmtBtn" onClick={()=>AddCmtBtn(_id)}>Post</button>
     </div>
    
 
