@@ -30,12 +30,21 @@ const navigate = useNavigate()
 const usersList = JSON.parse(localStorage.getItem("usersArray"))
 
 const getProfile = usersList.find((e)=>e.username === username)
+console.log(StoredPost)
+
+
 const isPostBookmarked = (post) => {
     const currentUserData = usersList.find(user => user.username === storedUser.username);
-    return currentUserData?.bookMark.some(bookmark => bookmark.id === post.id);
+    return currentUserData?.bookMark.some(bookmark => bookmark._id === post._id);
   };
 
+  const isPostLiked = (post) => {
+    const getPost = StoredPost.find(u => u._id === post._id);
+    console.log(getPost)
+    return getPost?.likes.likedBy.some(p => p === storedUser.username);
+  };
 
+console.log(usersList)
 
 
 
@@ -66,7 +75,7 @@ const isPostBookmarked = (post) => {
 <div className="image-overlay">
   
 <span className="image1">
-<img  width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/like--v1.png" alt="like--v1"/>13
+<img  width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/like--v1.png" alt="like--v1"/>{StoredPost.map((e)=>e._id === _id ? `${e.likes.likeCount}` :"")}
 </span>
 <span  className="image2">  <img  width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/speech-bubble--v1.png" alt="speech-bubble--v1"/>10</span>
 
@@ -75,13 +84,14 @@ const isPostBookmarked = (post) => {
 }
 
 {
+    
     overlay ||
 <div className="homePgCmtBar">
 <div className="commentImgs">
 
    <div  className="homePostImg"> 
 
-<img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1" onClick={()=>LikeHandler(post)} />
+<img width="24" height="24" src={isPostLiked(post)?"https://img.icons8.com/ios-glyphs/30/FA5252/like--v1.png" :"https://img.icons8.com/material-outlined/24/like--v1.png"} alt="like--v1" onClick={()=>LikeHandler(post)} />
 <span style={{position:"absolute" }}>{StoredPost.map((e)=>e._id === _id ? `${e.likes.likeCount}` :"")}</span>
 
 
@@ -89,7 +99,7 @@ const isPostBookmarked = (post) => {
     <img  onClick={ ()=>GetSinglePost(_id)} width="24" height="24" src="https://img.icons8.com/material-outlined/24/comments--v1.png" alt="comments--v1"/>
     <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/share-3.png" alt="share-3"/>
 
-    <img onClick={()=>BookMarkHandler(post)} className="bookmarkHome" width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+    <img onClick={()=>BookMarkHandler(post)} className="bookmarkHome" width="24" height="24" src={isPostBookmarked(post) ? "https://img.icons8.com/ios-glyphs/30/bookmark-ribbon.png"  :"https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png"} alt="bookmark-ribbon--v1"/>
 
 </div>
 <span>

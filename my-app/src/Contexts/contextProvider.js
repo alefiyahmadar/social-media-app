@@ -25,7 +25,9 @@ export const ContextProvider = ({ children }) => {
       const savedUser = localStorage.getItem("usersArray")
       return savedUser ? JSON.parse(savedUser) : users
     })
-    const [getPost , setGetPost] = useState(posts)
+    const [getPost , setGetPost] = useState(()=>{
+      const savedPost = localStorage.getItem("PostArray")
+      return savedPost ? JSON.parse(savedPost) : posts})
     const [showCreateDiv , setCreateDiv] = useState(false)
     const [BookMark , setBookmark] = useState([])
     const [showSaved , setShowSaved ] = useState(false)
@@ -186,16 +188,34 @@ setCreateDiv(false)
       
     }
     
-    localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
+
     
     
     const LikeHandler =(post)=>{
 
       console.log("click" , post)
+
+      setGetPost((prevPost)=>prevPost.map((e)=>{
+
+        if(e._id === post._id){
+          const isSimilar = e.likes.likedBy.some(u => u === storedUser.username)
+          const newArray = isSimilar ? e.likes.likedBy.filter((user)=> user !== storedUser.username):
+          [...e.likes.likedBy , storedUser.username]
+
+          return {
+            ...e , likes:{...e.likes , likedBy:newArray , likeCount:newArray.length}
+          }
+        }
+          return e
+        
+      }))
      
      
     
     }
+    localStorage.setItem("PostArray" , JSON.stringify(getPost))
+
+    console.log(getPost)
     const FollowHandler = (userToFollow) => {
       console.log(userToFollow)
       SetUsersArr((prevUser)=>prevUser.map((user)=>{
@@ -213,6 +233,8 @@ setCreateDiv(false)
 
     };
     console.log(GetUsers)
+    localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
+    
     
 
 

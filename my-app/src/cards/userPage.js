@@ -83,16 +83,16 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
         }
         </div>
 
-        {/* <div className="postSaveContainer" style={{display:showSaved ? "block" :"none" }}>
+        <div className="userPgData" style={{display:showSaved ? "block" :"none" }}>
    
         {
-    DataPost.map((e)=>< PostCard {...e} overlay/>)
+    GetDp.bookMark.map((e)=>< PostCard {...e} overlay/>)
 }
       
 
 
 
-</div>  */}
+</div> 
 
 
 

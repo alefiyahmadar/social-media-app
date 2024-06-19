@@ -48,6 +48,7 @@ someUserAttribute2}</p>
             userList.map((e)=>{
 
               const  getCurrentUser = JSON.parse(localStorage.getItem("usersArray")).find((e)=>e.username === storedUser.username)
+              console.log(getCurrentUser)
               
             
             return(<li key={e._id} style={{display: JSON.parse(localStorage.getItem("user")).username === e.username ? "none" :"flex"}}>
@@ -60,7 +61,7 @@ someUserAttribute2}</p>
         
         
 
-        <button onClick={()=>FollowHandler(e)}>Follow</button>
+        <button onClick={()=>FollowHandler(e)}>{getCurrentUser.following.includes(e.username) ? "Unfollow" :"Follow"}</button>
         
         </span>
 
