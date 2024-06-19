@@ -83,7 +83,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
         }
         </div>
 
-        <div className="postSaveContainer" style={{display:showSaved ? "block" :"none" }}>
+        {/* <div className="postSaveContainer" style={{display:showSaved ? "block" :"none" }}>
    
         {
     DataPost.map((e)=>< PostCard {...e} overlay/>)
@@ -92,7 +92,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
 
 
 
-</div> 
+</div>  */}
 
 
 

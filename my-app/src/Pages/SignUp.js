@@ -15,7 +15,7 @@ const {isLoggedIn , setIsLoggedIn   , loggedInUser , setLoggedInUser , GetUsers,
             const creds = {
 
                     
-                email:loggedInUser.email, password:loggedInUser.password, someUserAttribute1:loggedInUser.firstName, someUserAttribute2:loggedInUser.lastName , username:loggedInUser.username , profileImg:"https://i.pinimg.com/736x/a8/57/00/a85700f3c614f6313750b9d8196c08f5.jpg"
+                email:loggedInUser.email, password:loggedInUser.password, someUserAttribute1:loggedInUser.firstName, someUserAttribute2:loggedInUser.lastName , username:loggedInUser.username , profileImg:"https://i.pinimg.com/736x/a8/57/00/a85700f3c614f6313750b9d8196c08f5.jpg",bookMark:[]
               
              
         }

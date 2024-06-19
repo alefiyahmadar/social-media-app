@@ -54,7 +54,7 @@ function App() {
 
         <NavLink to="/"><span><img width="24" height="24" src="https://img.icons8.com/material-sharp/24/home.png" alt="home"/>{ window.innerWidth > 430 ? "Home" : null}</span></NavLink>
         <NavLink to="/explore"><span>{  window.innerWidth > 430 ? <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/compass.png" alt="compass"/>: <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/search--v1.png" alt="search--v1"/>}{ window.innerWidth > 430 ? "Explore" : null}</span></NavLink>
-        <NavLink to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>{ window.innerWidth > 430 ? "Bookmark" : null}</span></NavLink>
+        <NavLink style={{display:window.innerWidth > 430 ? "none" :""}}  to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>{ window.innerWidth > 430 ? "Bookmark" : null}</span></NavLink>
         <NavLink onClick={()=>setCreateDiv(true)}><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>{ window.innerWidth > 430 ? "Create" : null}</span></NavLink>
         
 
@@ -127,6 +127,7 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
        

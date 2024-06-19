@@ -17,7 +17,7 @@ comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost , getCmt , setCmt , AddCmtBtn , setShowSinglePost}  = useContext(MediaContext)
+const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost , getCmt , setCmt , AddCmtBtn , setShowSinglePost , BookMarkHandler , RemoveBookmark , storedUser}  = useContext(MediaContext)
 
 
 
@@ -30,16 +30,20 @@ const navigate = useNavigate()
 const usersList = JSON.parse(localStorage.getItem("usersArray"))
 
 const getProfile = usersList.find((e)=>e.username === username)
+const isPostBookmarked = (post) => {
+    const currentUserData = usersList.find(user => user.username === storedUser.username);
+    return currentUserData?.bookMark.some(bookmark => bookmark.id === post.id);
+  };
 
 
-console.log(getProfile)
+
 
 
     return(<div className="PostCard-container"   onClick={ url.charAt(23) ==="e" && "u" ? ()=>GetSinglePost(_id) : null   } key={_id} >
 
         <span>
        <div className="circle-image">
-       <img width="30" height="30" src={getProfile.username === username ? getProfile.profileImg :""}/>
+       <img width="30" height="30" src={getProfile.username === username ? getProfile.profileImg :""} />
 
        </div>
 
@@ -55,7 +59,7 @@ console.log(getProfile)
 
 
 {
-     overlay &&   <div  className="overlay"></div>
+     overlay &&   <div onClick={ ()=>GetSinglePost(_id)}  className="overlay"></div>
 }
 {
     overlay &&
@@ -84,7 +88,9 @@ console.log(getProfile)
 
     <img  onClick={ ()=>GetSinglePost(_id)} width="24" height="24" src="https://img.icons8.com/material-outlined/24/comments--v1.png" alt="comments--v1"/>
     <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/share-3.png" alt="share-3"/>
-    <img className="bookmarkHome" width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+
+    <img onClick={()=>BookMarkHandler(post)} className="bookmarkHome" width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+
 </div>
 <span>
 <p className="pHome">{username}</p>

@@ -19,6 +19,7 @@ someUserAttribute2: "Balika",
     profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
     followers:[],
     following:[],
+    bookMark:[],
     status:"HalalAsHell"
   },
    {
@@ -33,7 +34,9 @@ someUserAttribute2: "Balika",
       profileImg:"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
       followers:[],
       following:[],
-      status:"LiviinnTruee"
+      status:"LiviinnTruee",
+      bookMark:[]
+
     },
     
    {
@@ -47,7 +50,9 @@ someUserAttribute2: "Balika",
       profileImg:"https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg",
       followers:[],
       following:[],
-      status:"Sohaammm Heree"
+      status:"Sohaammm Heree",
+      bookMark:[],
+
     },
     {
       _id: uuid(),
@@ -60,7 +65,8 @@ someUserAttribute2: "Balika",
       profileImg:"https://wallpapers.com/images/hd/aesthetic-profile-picture-1rgefsojys253ard.jpg",
       followers:[],
       following:[],
-      status:"MaryGoAround"
+      status:"MaryGoAround",
+      bookMark:[],
     },
   
 ];

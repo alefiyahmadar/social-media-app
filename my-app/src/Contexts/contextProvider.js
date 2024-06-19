@@ -21,7 +21,10 @@ export const ContextProvider = ({ children }) => {
     const[GetNewArray , setNewArray] = useState([])
     const [SinglePost, setSinglePost] = useState([])
     const [showSinglePost, setShowSinglePost] = useState(false)
-    const [GetUsers, SetUsersArr] = useState(users)
+    const [GetUsers, SetUsersArr] = useState(()=>{
+      const savedUser = localStorage.getItem("usersArray")
+      return savedUser ? JSON.parse(savedUser) : users
+    })
     const [getPost , setGetPost] = useState(posts)
     const [showCreateDiv , setCreateDiv] = useState(false)
     const [BookMark , setBookmark] = useState([])
@@ -33,6 +36,8 @@ export const ContextProvider = ({ children }) => {
    const [ getCmt ,setCmt] = useState("")
 
     const [loggedInUser , setLoggedInUser] = useState({})
+  
+
 
     const [defaultUser , setDefaultUser] = useState( {
         _id: uuid(),
@@ -77,7 +82,7 @@ storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localSt
 userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArrayStored)) : localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
 
 StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
-
+const [currentUser, setCurrentUser] = useState(userArrayStored[0]);
 
     const FetchData = async () => {
 
@@ -125,28 +130,14 @@ StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : lo
     const GuestHandler =()=>{
         setIsLoggedIn(true)
         navigate("/")
+        const getDefault = userArrayStored.find((e)=>e.username === "adarshbalika")
+        console.log(getDefault)
+        const getUsersArray = JSON.parse(localStorage.getItem("usersArray"))
 
-        localStorage.setItem("user" , JSON.stringify({
-            _id: uuid(),
-            someUserAttribute1: "Adarsh",
-            someUserAttribute2: "Balika",
-            username: "adarshbalika",
-            password: "adarshBalika123",
-            createdAt: formatDate(),
-            updatedAt: formatDate(),
-            profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-          }))
+        localStorage.setItem("user" , JSON.stringify(getDefault))
+        localStorage.setItem("usersArray" ,JSON.stringify(getUsersArray) )
 
-          setLoggedInUser({
-            _id: uuid(),
-            someUserAttribute1: "Adarsh",
-            someUserAttribute2: "Balika",
-            username: "adarshbalika",
-            password: "adarshBalika123",
-            createdAt: formatDate(),
-            updatedAt: formatDate(),
-            profileImg:"https://images.unsplash.com/photo-1483909796554-bb0051ab60ad?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2lybCUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-          })
+         
 
     }
    
@@ -164,41 +155,6 @@ setCreateDiv(false)
         
     }
 
-    const LikeHandler =(post)=>{
-
-      console.log("click" , post)
-     
-
-      setGetPost((prevItem)=>prevItem.map((e)=>{
-
-        if(e._id === post._id){
-
-          const isLiked = e.likes.likedBy.includes(storedUser.username)
-          const newLikedBy = isLiked ? e.likes.likedBy.filter((e)=> e !== storedUser.username) :  [...e.likes.likedBy, storedUser.username]
-          console.log(newLikedBy.length)
-
-          return {
-            ...e , likes:{...e.likes , likedBy:newLikedBy , likeCount:newLikedBy.length }
-          }
-        }else{
-          return e
-        }
-        
-      }
-      
-    )
-  )
-  localStorage.setItem("PostArray" , JSON.stringify(getPost))
-
-     
-    
-    }
-   
-
-    // useEffect(()=>{
-    //   localStorage.setItem("PostArray" , JSON.stringify(getPost))
-    // },[getPost])
-    
 
     const AddCmtBtn = (id)=>{
       console.log(id , getCmt)
@@ -209,13 +165,68 @@ setCreateDiv(false)
 
 
     }
+    const BookMarkHandler =(post)=>{
+
+      SetUsersArr((prevUser)=>prevUser.map((user)=>{
+        if(user.username === storedUser.username){
+
+          const isBookmarked = user.bookMark.some(bookmark => bookmark._id === post._id);
+          const newBookmarkArray = isBookmarked 
+            ? user.bookMark.filter(bookmark => bookmark._id !== post._id) 
+            : [...user.bookMark, post];
+            return { ...user, bookMark: newBookmarkArray };
+        }
+        return user
+      }))
+      
+      
+       
+      
+
+      
+    }
+    
+    localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
+    
+    
+    const LikeHandler =(post)=>{
+
+      console.log("click" , post)
+     
+     
+    
+    }
+    const FollowHandler = (userToFollow) => {
+      console.log(userToFollow)
+      SetUsersArr((prevUser)=>prevUser.map((user)=>{
+        if(user.username === storedUser.username){
+
+          const isBookmarked = user.following.some(bookmark => bookmark === userToFollow.username);
+          const newBookmarkArray = isBookmarked 
+            ? user.following.filter(bookmark => bookmark !== userToFollow.username) 
+            : [...user.following, userToFollow.username];
+            return { ...user, following: newBookmarkArray };
+        }
+        return user
+      }))
+
+
+    };
+    console.log(GetUsers)
+    
+
+
+
+
+
+    
     
     
     
     
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn}}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn , FollowHandler  , BookMarkHandler }}>
 
         {children}
 

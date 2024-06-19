@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom"
 
 export const HomePage = () => {
 
-    const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers , storedUser } = useContext(MediaContext)
+    const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers , storedUser , FollowHandler } = useContext(MediaContext)
 
     const { DataPost , StoredPost } = useContext(MediaContext)
     console.log(GetUsers)
@@ -45,7 +45,12 @@ someUserAttribute2}</p>
 <ul className="suggestUl">
 
 {
-            userList.map((e)=><li key={e._id} style={{display: JSON.parse(localStorage.getItem("user")).username === e.username ? "none" :"flex"}}>
+            userList.map((e)=>{
+
+              const  getCurrentUser = JSON.parse(localStorage.getItem("usersArray")).find((e)=>e.username === storedUser.username)
+              
+            
+            return(<li key={e._id} style={{display: JSON.parse(localStorage.getItem("user")).username === e.username ? "none" :"flex"}}>
 
 <span >
        <div class="circle-image">
@@ -55,12 +60,12 @@ someUserAttribute2}</p>
         
         
 
-        <button>Follow</button>
+        <button onClick={()=>FollowHandler(e)}>Follow</button>
         
         </span>
 
                 
-            </li>)
+            </li>)})
         }
 </ul>
        
