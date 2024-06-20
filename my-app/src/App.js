@@ -3,7 +3,7 @@ import {React} from "react"
 import {Routes , Route , NavLink} from "react-router-dom"
 import { HomePage } from "./Pages/HomePage";
 import { ExplorePage } from "./Pages/ExplorePage";
-import { BookMark } from "./Pages/BookMark";
+
 import { useContext } from "react";
 import { MediaContext} from "./Contexts/contextProvider"
 import { UserPage } from "./cards/userPage";
@@ -113,7 +113,6 @@ function App() {
 
       <Routes>
         <Route path="/" element={isLoggedIn ? <HomePage/> : <LoginPage/>}></Route>
-        <Route path="/Bookmark" element={isLoggedIn ? <BookMark/>:<LoginPage/>}></Route>
         <Route path="/explore" element={isLoggedIn ? <ExplorePage/> :<LoginPage/>} ></Route>
         <Route path="/user/:usernameId" element={ isLoggedIn ? <UserPage/> :<LoginPage/>}></Route>
         <Route path="/newPost" element={ isLoggedIn ? <AddNewPost/>:<LoginPage/>}></Route>

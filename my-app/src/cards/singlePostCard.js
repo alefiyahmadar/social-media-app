@@ -16,7 +16,7 @@ export const SinglePostCard = (post) => {
         updatedAt,
         comments, image } = post
 
-    const { GetUsers , showSinglePost , setShowSinglePost } = useContext(MediaContext)
+    const { GetUsers ,  isPostLiked  , LikeHandler , StoredPost , BookMarkHandler , isPostBookmarked , setCmt , AddCmtBtn,getCmt } = useContext(MediaContext)
     console.log(GetUsers)
     
     const navigate = useNavigate()
@@ -25,6 +25,7 @@ export const SinglePostCard = (post) => {
 
 
     const getProfile = GetUsers.find((e) => e.username === username ? e.profileImg : null)
+    const getCurrPost = StoredPost.find((e)=> e._id === _id)
 
     return (<div className="popUpContainer" key={_id} >
 
@@ -56,7 +57,7 @@ export const SinglePostCard = (post) => {
                 
                 <ul className="content-list">
                 {
-                    comments.map(({_id , username,text})=>{
+                    getCurrPost.comments.map(({_id , username,text})=>{
 
                         const getCmtImg = GetUsers.find((e) => e.username === username ? e.profileImg : null)
                         console.log(getCmtImg)
@@ -81,15 +82,18 @@ export const SinglePostCard = (post) => {
 
     <div className="commentImgs">
 
-    <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/like--v1.png" alt="like--v1"/>
+    
+<img width="24" height="24" src={isPostLiked(post)?"https://img.icons8.com/ios-glyphs/30/FA5252/like--v1.png" :"https://img.icons8.com/material-outlined/24/like--v1.png"} alt="like--v1" onClick={()=>LikeHandler(post)} />
+<span style={{position:"absolute" }}>{StoredPost.map((e)=>e._id === _id ? `${e.likes.likeCount}` :"")}</span>
+
     <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/comments--v1.png" alt="comments--v1"/>
     <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/share-3.png" alt="share-3"/>
-    <img className="bookmark" width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+    <img onClick={()=>BookMarkHandler(post)} className="bookmarkHome" width="24" height="24" src={isPostBookmarked(post) ? "https://img.icons8.com/ios-glyphs/30/bookmark-ribbon.png"  :"https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png"} alt="bookmark-ribbon--v1"/>
 
     </div>
     <div className="addComment">
-        <input placeholder="Add a comment..."/>
-        <button className="PostCmtBtn">post</button>
+        <input placeholder="Add a comment..." onChange={(e)=>setCmt(e.target.value)} value={getCmt}/>
+        <button onClick={()=>AddCmtBtn(_id)} className="PostCmtBtn">post</button>
     </div>
 </div>
 

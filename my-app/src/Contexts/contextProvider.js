@@ -163,10 +163,14 @@ setCreateDiv(false)
       console.log(StoredPost)
       const addCmt = StoredPost.map((e)=>e._id === id ? {...e , comments:[...e.comments , { _id:uuid(),username:storedUser.username, text:getCmt,votes:{upvotedBy:[],downvotedBy:[]}}]}: e)
       console.log(addCmt)
-      localStorage.setItem("PostArray" , JSON.stringify(addCmt))
+      setGetPost(addCmt)
+      setCmt("")
+  
 
 
     }
+    localStorage.setItem("PostArray" , JSON.stringify(getPost))
+    
     const BookMarkHandler =(post)=>{
 
       SetUsersArr((prevUser)=>prevUser.map((user)=>{
@@ -239,16 +243,25 @@ setCreateDiv(false)
 
 
 
+    const isPostBookmarked = (post) => {
+      const currentUserData = userArrayStored.find(user => user.username === storedUser.username);
+      return currentUserData?.bookMark.some(bookmark => bookmark._id === post._id);
+    };
+  
+    const isPostLiked = (post) => {
+      const getPost = StoredPost.find(u => u._id === post._id);
+      console.log(getPost)
+      return getPost?.likes.likedBy.some(p => p === storedUser.username);
+    };
+
+    
+    
+    
+    
+    
 
 
-    
-    
-    
-    
-    
-
-
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn , FollowHandler  , BookMarkHandler }}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn , FollowHandler  , BookMarkHandler , isPostBookmarked , isPostLiked}}>
 
         {children}
 
