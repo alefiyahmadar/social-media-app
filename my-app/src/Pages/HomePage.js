@@ -4,17 +4,17 @@ import { useContext } from "react"
 import { MediaContext } from "../Contexts/contextProvider"
 import { PostCard } from "../cards/postCard"
 import { SinglePostCard } from "../cards/singlePostCard"
-import { users } from "../backend/db/users"
+
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { NavLink } from "react-router-dom"
+
 
 
 export const HomePage = () => {
 
-    const { showSinglePost, SinglePost, setShowSinglePost , user ,GetUsers , storedUser , FollowHandler } = useContext(MediaContext)
+    const { showSinglePost, SinglePost, setShowSinglePost  ,GetUsers , storedUser , FollowHandler } = useContext(MediaContext)
 
-    const { DataPost , StoredPost } = useContext(MediaContext)
+    const { StoredPost } = useContext(MediaContext)
     console.log(GetUsers)
     const userList = JSON.parse(localStorage.getItem("usersArray"))
 
@@ -34,12 +34,12 @@ export const HomePage = () => {
 
         <span >
        <div class="circle-image">
-       <img width="30" height="30" src={JSON.parse(localStorage.getItem("user")).profileImg}/>
+       <img width="30" height="30" alt="" src={JSON.parse(localStorage.getItem("user")).profileImg}/>
        </div>
         <h2 onClick={()=>navigate(`/user/${storedUser.username}`)} >{JSON.parse(localStorage.getItem("user")).username}</h2>
-        <p>{JSON.parse(localStorage.getItem("user")).
-someUserAttribute1} {JSON.parse(localStorage.getItem("user")).
-someUserAttribute2}</p>
+        <p>{JSON.parse(localStorage.getItem("user")).someUserAttribute1}
+         {JSON.parse(localStorage.getItem("user")).someUserAttribute2}</p>
+
         </span>
         <h4>Suggested for you</h4>
 <ul className="suggestUl">
@@ -55,7 +55,7 @@ someUserAttribute2}</p>
 
 <span >
        <div class="circle-image">
-       <img width="30" height="30" src={e.profileImg}/>
+       <img width="30" height="30" alt="" src={e.profileImg}/>
        </div>
         <h5 className="linkH2" onClick={()=>navigate(`/user/${e.username}` )}  >{e.username}</h5>
         

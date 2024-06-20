@@ -19,9 +19,9 @@ function App() {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
-  const {showCreateDiv , setCreateDiv , getCmtBarMob , setCmtMob , isLoggedIn , setIsLoggedIn  ,newPostObj , setPostObj  , storedUser   } = useContext(MediaContext)
+  const {showCreateDiv , setCreateDiv , getCmtBarMob ,  isLoggedIn   ,newPostObj , setPostObj  , storedUser   } = useContext(MediaContext)
 
-  const {setShowSinglePost ,  showSinglePost , defaultUser , AddPostBtn } = useContext(MediaContext)
+  const {  showSinglePost ,  AddPostBtn } = useContext(MediaContext)
 
   const HandleImgChange =(e)=>{
 
@@ -97,7 +97,7 @@ function App() {
 
         <span className="spanCreate" >
        <div class="circle-image" >
-       <img width="30" height="30" src={storedUser.profileImg}/>
+       <img width="30" height="30" alt="" src={storedUser.profileImg}/>
       
        </div>
         <h3>{storedUser.username}</h3>

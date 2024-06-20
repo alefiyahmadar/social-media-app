@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { MediaContext } from "../Contexts/contextProvider"
 import { SinglePostCard } from "./singlePostCard"
@@ -10,7 +10,7 @@ export const UserPage =()=>{
     
 const {usernameId} = useParams()
 
-const {DataPost , GetUsers , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved , loggedInUser , setLoggedInUser , StoredPost ,storedUser , FollowHandler} = useContext(MediaContext)
+const {DataPost  , SinglePost , showSinglePost , setShowSinglePost , showSaved , setShowSaved ,  StoredPost ,storedUser , FollowHandler} = useContext(MediaContext)
 
 
 
@@ -29,7 +29,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
  console.log(getUser)
  const getNumberOfPost = DataPost.filter((e)=>e.username === usernameId)
  
- const getLatestPost = DataPost.slice(-4)
+
     return(<div className="explore-container">
 
         <div className="userInfoContainer" >
@@ -37,7 +37,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
         
         <div className="imgContainer">
 
-<img className="circle-image-user" src={GetDp.profileImg}></img>
+<img className="circle-image-user" alt='' src={GetDp.profileImg}></img>
 
         </div>
         <div className="userInfo">

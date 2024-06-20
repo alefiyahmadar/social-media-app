@@ -7,7 +7,7 @@ import { SinglePostCard } from "../cards/singlePostCard"
 import { useEffect } from "react"
 
 export const ExplorePage =()=>{
-const { DataPost , setPostData , showSinglePost , setShowSinglePost , SinglePost , GetUsers , GetExploreScroll ,   showPost , setPost ,  GetNewArray , setNewArray , StoredPost  } = useContext(MediaContext)
+const { DataPost  , showSinglePost , setShowSinglePost , SinglePost  , GetExploreScroll ,   showPost , setPost ,  GetNewArray  , StoredPost  } = useContext(MediaContext)
 console.log(DataPost)
 console.log(SinglePost)
 

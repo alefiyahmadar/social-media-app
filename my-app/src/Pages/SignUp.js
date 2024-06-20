@@ -1,11 +1,11 @@
-import { NavLink, json } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { MediaContext } from "../Contexts/contextProvider"
 
 export const SignUpPage =()=>{
 
-const {isLoggedIn , setIsLoggedIn   , loggedInUser , setLoggedInUser , GetUsers, SetUsersArr} = useContext(MediaContext)
+const { setIsLoggedIn   , loggedInUser , setLoggedInUser , GetUsers, SetUsersArr} = useContext(MediaContext)
 
 
     const navigate = useNavigate()

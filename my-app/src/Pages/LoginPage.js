@@ -9,7 +9,7 @@ export const LoginPage = ()=>{
     const [logUsername , setUsername] = useState()
     const [logPassword , setPassword] =useState()
 
-    const {isLoggedIn , setIsLoggedIn  , GuestHandler , GetUsers} = useContext(MediaContext)
+    const { setIsLoggedIn  , GuestHandler } = useContext(MediaContext)
     const navigate = useNavigate()
 
     const LogInHandler =()=>{

@@ -10,11 +10,8 @@ export const SinglePostCard = (post) => {
     const {
         _id,
         content,
-        likes,
         username,
-        createdAt,
-        updatedAt,
-        comments, image } = post
+         image } = post
 
     const { GetUsers ,  isPostLiked  , LikeHandler , StoredPost , BookMarkHandler , isPostBookmarked , setCmt , AddCmtBtn,getCmt } = useContext(MediaContext)
     console.log(GetUsers)
@@ -38,7 +35,7 @@ export const SinglePostCard = (post) => {
             <span className="singlePostSpan" >
 
                 <div class="circle-image">
-                    <img src={getProfile.username === username ? getProfile.profileImg : ""} />
+                    <img alt='' src={getProfile.username === username ? getProfile.profileImg : ""} />
                 </div>
                 <h2 className="linkH2" onClick={()=>navigate(`/user/${username}` )}>{username}</h2>
 
@@ -47,7 +44,7 @@ export const SinglePostCard = (post) => {
             <div className="scrollable-div">
 <span>
 <div class="circle-image">
-                    <img src={getProfile.username === username ? getProfile.profileImg : ""} />
+                    <img alt='' src={getProfile.username === username ? getProfile.profileImg : ""} />
                 </div>
 <p className="para"> <b>{username}</b> {content}</p>
 
@@ -67,7 +64,7 @@ export const SinglePostCard = (post) => {
                         <span >
 
                 <div class="circle-image">
-                    <img src={getCmtImg.username === username ? getCmtImg.profileImg : ""} />
+                    <img alt='' src={getCmtImg.username === username ? getCmtImg.profileImg : ""} />
                 </div>
                 <h3>{username}</h3>
                 

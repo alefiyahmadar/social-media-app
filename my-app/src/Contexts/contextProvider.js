@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { users } from "../backend/db/users"
 import { posts } from '../backend/db/posts';
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../backend/utils/authUtils";
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export const MediaContext = createContext()
@@ -84,7 +84,7 @@ storedUser ? localStorage.setItem("user" , JSON.stringify(storedUser)) : localSt
 userArrayStored ? localStorage.setItem("usersArray" , JSON.stringify(userArrayStored)) : localStorage.setItem("usersArray" , JSON.stringify(GetUsers))
 
 StoredPost ? localStorage.setItem("PostArray" , JSON.stringify(StoredPost)) : localStorage.setItem("PostArray" , JSON.stringify(getPost))
-const [currentUser, setCurrentUser] = useState(userArrayStored[0]);
+
 
     const FetchData = async () => {
 
@@ -261,7 +261,7 @@ setCreateDiv(false)
     
 
 
-    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked , AddPostBtn , getCmt , setCmt , AddCmtBtn , FollowHandler  , BookMarkHandler , isPostBookmarked , isPostLiked}}>
+    return (<MediaContext.Provider value={{ DataPost, setPostData, GetSinglePost, SinglePost, setSinglePost, showSinglePost, GetUsers, SetUsersArr ,setShowSinglePost  , showCreateDiv , setCreateDiv , BookMark , setBookmark , showSaved , setShowSaved , getCmtBarMob , setCmtMob , GetExploreScroll , showPost , setPost , GetNewArray , setNewArray ,isLoggedIn , setIsLoggedIn   , GuestHandler , loggedInUser , setLoggedInUser , defaultUser , setDefaultUser , storedUser ,getPost , setGetPost ,AddPostBtn , newPostObj , setPostObj  ,StoredPost , userArrayStored , LikeHandler  , isLiked , setLiked  , getCmt , setCmt , AddCmtBtn , FollowHandler  , BookMarkHandler , isPostBookmarked , isPostLiked}}>
 
         {children}
 

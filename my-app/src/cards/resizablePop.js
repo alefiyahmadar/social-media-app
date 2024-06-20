@@ -9,7 +9,7 @@ export const ResizablePopUp = ()=>{
 
     const [height , setHeight  ] = useState(60)
 
-    const {SinglePost , GetUsers  ,getCmtBarMob , setCmtMob} = useContext(MediaContext)
+    const {SinglePost , GetUsers   , setCmtMob} = useContext(MediaContext)
     
     const HandleDrag =(e)=>{
 
@@ -37,7 +37,7 @@ export const ResizablePopUp = ()=>{
             {
                 SinglePost.map((e)=>e.comments.map(({username , text , _id})=><li key={_id} style={{listStyle:"none"}}><div>  <span style={{display:"flex" , padding:"0.5rem" , marginBottom:"1rem"}}>
                 <div className="circle-image" style={{width:"35px" , height:"35px"}} >
-                <img  width="30" height="30" src={GetUsers.find((e)=>e.username === username ?e.profileImg :null).profileImg }/>
+                <img  width="30" height="30" alt='' src={GetUsers.find((e)=>e.username === username ?e.profileImg :null).profileImg }/>
          
                 </div>
          

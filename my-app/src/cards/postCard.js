@@ -8,16 +8,13 @@ export const PostCard = (post , index)=>{
 
 const {
 _id ,
-content ,
-likes ,  
+content , 
 username,
-createdAt,
-updatedAt,
 comments , image , overlay}=post
 
 const [More , setMore] = useState(false)
 
-const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost , getCmt , setCmt , AddCmtBtn , setShowSinglePost , BookMarkHandler , RemoveBookmark , storedUser , isPostBookmarked , isPostLiked}  = useContext(MediaContext)
+const {GetSinglePost  , showSinglePost , LikeHandler ,StoredPost , getCmt , setCmt , AddCmtBtn , BookMarkHandler ,  isPostBookmarked , isPostLiked}  = useContext(MediaContext)
 
 
 
@@ -43,7 +40,7 @@ console.log(usersList)
 
         <span>
        <div className="circle-image">
-       <img width="30" height="30" src={getProfile.username === username ? getProfile.profileImg :""} />
+       <img width="30" height="30" alt='' src={getProfile.username === username ? getProfile.profileImg :""} />
 
        </div>
 
@@ -52,7 +49,7 @@ console.log(usersList)
         <h2 className="linkH2" onClick={()=>navigate(`/user/${username}`)}>{username}</h2>
         </span>
 
-        <img className="image" style={{ display:  window.innerWidth > 430 ? showSinglePost ? "none" :"block" :""}}   src={image}></img>
+        <img className="image" alt='' style={{ display:  window.innerWidth > 430 ? showSinglePost ? "none" :"block" :""}}   src={image}></img>
         
        
         <p style={{display:image ? "none" :"flex"}}>{content}</p>
