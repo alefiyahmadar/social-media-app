@@ -618,8 +618,7 @@ padding-top: 2rem;
  }
  .userInfo span{
 
-  display: flex;
-  justify-content: space-between;
+  
  }
  .userInfo span button{
 
@@ -1204,7 +1203,152 @@ padding-bottom: 4rem;
   
 
 }
+.loginContainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 
+  width: 60%; 
+  height: 50%;
+  padding: 20px; 
+  position: absolute; 
+  top: 40%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  
+  border: 0.1px solid lightgray; 
+ }
+ .loginContainer h3{
+  font-size: 20px;
+  margin-top: 0.5em;
+ }
+ .loginContainer input{
+
+  padding: 0.3rem;
+  width: 75%;
+  margin-bottom: 0.5rem;
+  
+ }
+ .loginContainer button{
+  width: max-content;
+  
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  background-color: #60a5fa;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+ }
+ .loginContainer button:hover{
+  background-color: #3b82f6;
+ }
+ .loginContainer p{
+  color: gray;
+  font-weight: 600;
+  font-size: 12px;
+  padding-top: 1rem;
+ }
+ .loginContainer h4{
+   font-weight: 400;
+   font-size: small;
+ }
+ .userInfoContainer{
+
+  
+  
+  height: 40vh;
+  display: flex;
+  margin: auto;
+border-bottom:1px solid wheat ;
+
+ }
+ .imgContainer{
+  width: 5rem;
+  padding-top: 1rem;
+  
+   }
+   .circle-image-user{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 1rem;
+   }
+   .userInfo{
+    display: flex;
+    flex-direction: column;
+    
+   }
+   
+   .userInfo span{
+display: flex;
+flex-direction: column;
+
+margin-bottom: 5rem;
+    
+   }
+   .userInfo span button{
+  
+    background-color: wheat;
+    display: inline;
+    
+   }
+   .userInfo div{
+
+
+  margin-left:0% ;
+    
+    
+   }
+   .userInfo div p{
+  display: inline;
+    
+   }
+  
+   .userPgTogglePost{
+  
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    position: absolute;
+    right: 0%;
+    top: 100%;
+   }
+   .userPgTogglePost img{
+    margin-left: 1rem;
+    padding-top: 1rem;
+    
+  
+    
+   }
+   .userPgTogglePost button{
+    margin-right: 1rem;
+    border-top: 1px solid wheat;
+    background-color: white;
+    font-size: 12px;
+    padding-top: 1rem;
+    border: none;
+    
+    
+    
+  
+    
+   }
+   .userName{
+    color: green;
+    position: absolute;
+    top: 20%;
+    left: 0%;
+   }
+   .userName p{
+    margin: 0%;
+
+   }
+   
 
 
 

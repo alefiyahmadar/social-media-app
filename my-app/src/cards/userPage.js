@@ -37,7 +37,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
         
         <div className="imgContainer">
 
-<img className="circle-image-user" alt='' src={GetDp.profileImg}></img>
+<img className="circle-image-user" src={GetDp.profileImg}></img>
 
         </div>
         <div className="userInfo">
@@ -54,8 +54,9 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
                 <p><b>{GetDp.following.length}</b> Following</p>
                 
             </div>
-            <p>{GetDp.firstName} {GetDp.lastName}</p>
-            <p>{GetDp.status}</p>
+            <span className='userName'><p >{GetDp.someUserAttribute1} {GetDp.someUserAttribute2}</p>
+            <p >{GetDp.status}</p></span>
+            
             <button style={{display:JSON.parse(localStorage.getItem("user")).username === usernameId ?"none" :"block"}}   className='followBtn' onClick={()=>FollowHandler(GetDp)}>{getUser.following.includes(GetDp.username)?"Unfollow" :"Follow"}</button>
         </div>
         <div className="userPgTogglePost">
