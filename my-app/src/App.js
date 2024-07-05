@@ -12,6 +12,7 @@ import { ResizablePopUp } from "./cards/resizablePop";
 import { AddNewPost } from "./Pages/AddnewPost";
 import { LoginPage } from "./Pages/LoginPage";
 import {SignUpPage} from "./Pages/SignUp"
+import { useLocation } from "react-router-dom";
 
 
 
@@ -35,7 +36,7 @@ function App() {
    setPostObj({...newPostObj , image:file , username:storedUser.username})
     
   }
-  
+  const location = useLocation()
   
   
   return (
@@ -56,9 +57,13 @@ function App() {
         <NavLink to="/explore"><span>{  window.innerWidth > 430 ? <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/compass.png" alt="compass"/>: <img width="24" height="24" src="https://img.icons8.com/ios-filled/24/search--v1.png" alt="search--v1"/>}{ window.innerWidth > 430 ? "Explore" : null}</span></NavLink>
         <NavLink style={{display:window.innerWidth > 430 ? "none" :""}}  to="/bookmark"><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>{ window.innerWidth > 430 ? "Bookmark" : null}</span></NavLink>
         <NavLink style={{display:window.innerWidth < 430 ? "none": ""}} onClick={()=>setCreateDiv(true)}><span><img width="24" height="24" src="https://img.icons8.com/material-outlined/24/add.png" alt="add"/>{ window.innerWidth > 430 ? "Create" : null}</span></NavLink>
-        <div style={{display:window.innerWidth > 430 ? "none" :"flex"}}  class="circle-image">
+
+        <NavLink onClick={()=>location.reload()} ><span><img width="24" height="24" src="https://img.icons8.com/ios-glyphs/30/logout-rounded-left.png" alt="logout-rounded-left"/>{ window.innerWidth > 430 ? "Logout" : null}</span></NavLink>
+
+        <div style={{display:window.innerWidth > 430 ? "none" :"flex" }}  class="circle-image">
        <img width="20" height="20" alt="" src={JSON.parse(localStorage.getItem("user")).profileImg}/>
        </div>
+      
         
 
       </nav>
