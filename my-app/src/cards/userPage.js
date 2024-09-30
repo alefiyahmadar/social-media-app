@@ -37,7 +37,7 @@ const users = JSON.parse(localStorage.getItem("usersArray"))
         
         <div className="imgContainer">
 
-<img className="circle-image-user" src={GetDp.profileImg}></img>
+<img alt="" className="circle-image-user" src={GetDp.profileImg}></img>
 
         </div>
         <div className="userInfo">
